@@ -4,28 +4,37 @@ export default function HeroImage({ src, videoSrc, alt }) {
   const [isActive, setIsActive] = useState(false);
   const videoRef = useRef(null);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.onended = () => {
+        setIsActive(false);
+        videoRef.current.currentTime = 0;
+      };
+    }
+  }, []);
+
   const handleMouseEnter = () => {
-    setIsActive(true);
-    videoRef.current?.play();
+    if (videoRef.current && !isActive) {
+      setIsActive(true);
+      videoRef.current.currentTime = 0;
+      videoRef.current.play();
+    }
   };
 
   const handleMouseLeave = () => {
-    setIsActive(false);
-    videoRef.current?.pause();
-    videoRef.current.currentTime = 0;
+    if (videoRef.current) {
+      setIsActive(false);
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
   };
 
   // For mobile/touch devices
   const handleTouch = () => {
-    if(videoRef.current && !isActive){
+    if (videoRef.current && !isActive) {
       setIsActive(true);
       videoRef.current.currentTime = 0;
       videoRef.current.play();
-
-      videoRef.current.onended = () =>{
-        setIsActive(false);
-        videoRef.current.currentTime = 0;
-      };
     }
   };
 
@@ -50,7 +59,6 @@ export default function HeroImage({ src, videoSrc, alt }) {
         ref={videoRef}
         src={videoSrc}
         muted
-        loop
         playsInline
         preload="metadata"
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
