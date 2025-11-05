@@ -9,7 +9,7 @@ export const ProjectCard = ({ project, index }) => {
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="w-110 group relative block rounded-xl overflow-hidden border border-slate-900 hover:border-slate-600 transition-all cursor-pointer"
+      className="w-full group relative block rounded-xl overflow-hidden border border-slate-900 hover:border-slate-600 transition-all cursor-pointer"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -52,17 +52,17 @@ export const ProjectCard = ({ project, index }) => {
 
       {/* Text Overlay (fades out on hover) */}
       <motion.div
-        className="relative z-10 p-6 flex flex-col justify-end h-64"
+        className="relative z-10 p-4 sm:p-6 flex flex-col justify-end h-[280px] sm:h-64"
         animate={{ opacity: isHovered ? 0 : 1, y: isHovered ? 20 : 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <div className="space-y-2">
           <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
-          <p className="text-slate-200 text-sm leading-relaxed">
+          <p className="text-slate-200 text-xs sm:text-sm leading-relaxed line-clamp-3 sm:line-clamp-none">
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-2 mt-3">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2 sm:mt-3">
             {project.tags.map((tag, i) => (
               <span
                 key={i}
