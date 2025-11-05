@@ -17,11 +17,15 @@ export default function HeroImage({ src, videoSrc, alt }) {
 
   // For mobile/touch devices
   const handleTouch = () => {
-    // Toggle playback when tapped
-    if (isActive) {
-      handleMouseLeave();
-    } else {
-      handleMouseEnter();
+    if(videoRef.current && !isActive){
+      setIsActive(true);
+      videoRef.current.currentTime = 0;
+      videoRef.current.play();
+
+      videoRef.current.onended = () =>{
+        setIsActive(false);
+        videoRef.current.currentTime = 0;
+      };
     }
   };
 
