@@ -102,7 +102,7 @@ export default function Hero() {
           </p>
           <div className="flex flex-wrap gap-3">
             <a href="mailto:vrigukumar710@email.com"><SocialButton icon={<Mail className="w-4 h-4" />} label="Email" /></a>
-            <a href="https://github.com/BhriguKD"><SocialButton icon={<Github className="w-4 h-4" />} label="GitHub" /></a>
+            <a href="https://github.com/BhriguKumarDeka"><SocialButton icon={<Github className="w-4 h-4" />} label="GitHub" /></a>
             <a href="https://www.linkedin.com/in/bhrigukumardeka/"><SocialButton icon={<Linkedin className="w-4 h-4" />} label="LinkedIn" /></a>
           </div>
         </motion.div>
