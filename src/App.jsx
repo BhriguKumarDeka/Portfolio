@@ -12,9 +12,9 @@ export default function Portfolio() {
       <Header />
       <Hero />
       <hr className='bg-gray-700 max-w-4xl mx-auto h-[1.5px]'/>
-      <Experience/>
+      <Project/>  
       <hr className='bg-gray-700 max-w-4xl mx-auto h-[1.5px]'/>
-      <Project/>
+      <Experience/>
       <hr className='bg-gray-700 max-w-4xl mx-auto h-[1.5px]'/>
       <Skills />
       
