@@ -1,13 +1,23 @@
 import { SocialButton } from "./SocialButton";
 import { motion, useScroll, useTransform } from 'motion/react';
-import { Github, Linkedin, Mail, Twitter, Download} from 'lucide-react';
+import { Github, Linkedin, Mail, Twitter, Download } from 'lucide-react';
 import HeroImage from "../components/HeroImage.jsx";
 
 
 export default function Hero() {
   return (
-    <section className="min-h-[80vh] bg-black text-white flex items-center justify-center px-6 pt-20">
-      <div className="max-w-2xl">
+    <section className="min-h-[85vh] bg-black text-white flex items-center justify-center px-6 pt-20 relative">
+      <div className="max-w-2xl relative">
+        {/* Floating gradient orb */}
+        <motion.div
+          className="absolute -top-20 -right-20 w-64 h-64 bg-lime-500/5 rounded-full blur-3xl pointer-events-none"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -16,8 +26,8 @@ export default function Hero() {
         >
 
           <motion.div
-            className="w-24 h-24 rounded-full shrink-0 border-2 border-slate-800 relative flex items-center justify-center bg-slate-900 cursor-pointer"
-            whileHover={{ scale: 1.05 }}
+            className="w-24 h-24 rounded-full shrink-0 border-2 border-slate-800 relative flex items-center justify-center bg-slate-900 cursor-pointer shadow-lg shadow-slate-900/50"
+            whileHover={{ scale: 1.05, borderColor: "rgb(71, 85, 105)" }}
             transition={{ type: "spring", stiffness: 300 }}
           >
             <HeroImage
@@ -25,7 +35,13 @@ export default function Hero() {
               videoSrc="/videos/profile-hover.mp4"
               alt="Profile"
             />
-            <p className="absolute -top-6 -left-6 md:-top-8 md:-left-12 sm:text-xl md:text-2xl text-gray-300 -rotate-15 font-hand">Give a High Five</p>
+            <motion.p
+              className="absolute -top-6 -left-6 md:-top-8 md:-left-12 sm:text-xl md:text-2xl text-gray-300 -rotate-15 font-hand"
+              animate={{ rotate: [-15, -12, -15] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              Give a High Five
+            </motion.p>
           </motion.div>
 
           <div>
@@ -35,18 +51,18 @@ export default function Hero() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
             >
-              BHRIGU <span className="text-sm md:text-2xl font-light text-gray-400">( vreé-goo )</span><br/>
+              BHRIGU <span className="text-sm md:text-2xl font-light text-gray-400">( vreé-goo )</span><br />
               KUMAR DEKA
             </motion.h1>
 
             <motion.p
-  className="relative inline-block bg-linear-to-r from-slate-500 via-lime-400 to-slate-500 bg-size-[200%_100%] text-transparent bg-clip-text animate-shimmer"
-  initial={{ opacity: 0, x: -20 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ delay: 0.3 }}
->
-  UI UX Designer & Frontend Developer
-</motion.p>
+              className="relative inline-block bg-linear-to-r from-slate-500 via-lime-400 to-slate-500 bg-size-[200%_100%] text-transparent bg-clip-text animate-shimmer"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              UI UX Designer & Frontend Developer
+            </motion.p>
 
           </div>
         </motion.div>
@@ -72,17 +88,17 @@ export default function Hero() {
           transition={{ delay: 0.6 }}
         >
           <motion.button
-            className="px-4 py-2 rounded-lg flex items-center gap-2 text-sm transition-colors"
-            whileHover={{ scale: 1.02 }}
+            className="px-4 py-2 rounded-lg flex items-center gap-2 text-sm transition-all bg-gradient-to-r from-slate-900/50 to-slate-800/50 border border-slate-800/50 backdrop-blur-sm"
+            whileHover={{ scale: 1.02, borderColor: "rgb(100, 116, 139)" }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <span className="w-2 h-2 bg-lime-500 rounded-full animate-pulse shadow-lg shadow-lime-500/50" />
             Itching Creativity
           </motion.button>
           <a href="https://drive.google.com/file/d/1tortAgQQDzzpAskSDFhUt3wYgSdlyq6P/view?usp=sharing" target="_blank" rel="noopener noreferrer">
             <motion.button
-              className="px-4 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg flex items-center gap-2 text-sm transition-colors cursor-pointer"
-              whileHover={{ scale: 1.02 }}
+              className="px-4 py-2 bg-slate-900/80 hover:bg-slate-800 border border-slate-700 rounded-lg flex items-center gap-2 text-sm transition-all cursor-pointer backdrop-blur-sm shadow-lg shadow-slate-900/30"
+              whileHover={{ scale: 1.02, y: -2, borderColor: "rgb(100, 116, 139)" }}
               whileTap={{ scale: 0.98 }}
             >
               <Download className="w-4 h-4" />

@@ -59,17 +59,34 @@ export default function Project() {
   const displayedProjects = isExpanded ? projects : projects.slice(0, 4);
 
   return (
-    <section className="min-h-screen bg-black text-white px-4 sm:px-6 py-12 sm:py-20">
-      <div className="max-w-3xl mx-auto">
+    <section className="min-h-screen bg-black text-white px-4 sm:px-6 py-16 sm:py-24 relative overflow-hidden">
+      {/* Background accent */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-lime-500/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-3xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold mb-8 sm:mb-12 pl-4 sm:pl-14">
+          <motion.h2
+            className="text-4xl sm:text-5xl font-bold mb-4 sm:mb-6 pl-4 sm:pl-14 bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
             My Creations
-          </h2>
+          </motion.h2>
+          <motion.p
+            className="text-slate-400 mb-8 sm:mb-12 pl-4 sm:pl-14 text-sm sm:text-base"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            A showcase of my design & development work
+          </motion.p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {displayedProjects.map((project, index) => (
               <ProjectCard key={index} project={project} index={index} />
@@ -81,14 +98,18 @@ export default function Project() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="flex justify-center mt-8 sm:mt-12"
+              className="flex justify-center mt-10 sm:mt-14"
             >
-              <button
+              <motion.button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-white border border-slate-700 rounded-lg hover:border-slate-500 transition-all duration-300 bg-slate-900/30 hover:bg-slate-900/50 backdrop-blur-sm"
+                className="group px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-medium text-white border border-slate-700 rounded-xl hover:border-lime-500/50 transition-all duration-300 bg-gradient-to-r from-slate-900/40 to-slate-800/40 hover:from-slate-900/60 hover:to-slate-800/60 backdrop-blur-sm shadow-xl shadow-slate-900/30 relative overflow-hidden"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
-                {isExpanded ? 'Show Less' : 'Explore More'}
-              </button>
+                {/* Hover gradient effect */}
+                <span className="absolute inset-0 bg-gradient-to-r from-lime-500/0 via-lime-500/10 to-lime-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="relative z-10">{isExpanded ? '↑ Show Less' : '↓ Explore More'}</span>
+              </motion.button>
             </motion.div>
           )}
         </motion.div>
