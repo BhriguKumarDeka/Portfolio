@@ -1,15 +1,34 @@
 import { motion } from "motion/react";
 import { ProjectCard } from "./ProjectCard";
+import { useState } from "react";
 
-export default function Project (){
+export default function Project() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const projects = [
+    {
+      title: 'DimLight',
+      description: 'An AI-powered Sleep and Wellness app that offers personalized sleep tracking, personal insights, and ambient breathing exercises to enhance sleep quality and overall well-being.',
+      tags: ['React', 'Figma', 'User Research', 'AI Integration'],
+      link: 'https://www.dimlight.space',
+      year: '2025',
+      image: '/images/projects/DimlightOgImage.png',
+    },
     {
       title: 'Orders',
       description: 'A unified platform to manage the decentralized system of e-commerce platforms. Seamlessly manage orders and return windows from multiple brands in one place.',
       tags: ['Figma', 'Balsamiq', 'Miro', 'Prototyping', 'Gen AI'],
       link: 'https://www.figma.com/proto/0Ym2EXSxhoravrc2XL7vYM/Orders?page-id=350%3A8003&node-id=350-8004&viewport=133%2C292%2C0.3&t=Oj4hKskcTb7VC5kl-1&scaling=contain&content-scaling=fixed',
       year: '2025',
-      image: '/images/projects/HeroImageOrders.png',
+      image: '/images/projects/OrdersOgImage.png',
+    },
+    {
+      title: 'SWallet',
+      description: 'A secure digital wallet app designed to simplify personal details management. Offers encrypted storage, easy access, and seamless integration with various services like Google Wallet and Apple Pay.',
+      tags: ['Figma', 'Security', 'UI Design', 'Prototyping'],
+      link: 'https://www.figma.com/proto/7gXCW0TG77wj6dVdm0ZafX/SWallet?page-id=142%3A1181&node-id=346-2685&viewport=183%2C-194%2C0.1&t=kxeO3FBzaNwddIbP-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=346%3A2685',
+      year: '2025',
+      image: '/images/projects/SWalletOgImage.png',
     },
     {
       title: 'Flow by Spotify',
@@ -22,10 +41,10 @@ export default function Project (){
     {
       title: 'Archon',
       description: 'SIH project. A RAG platform that leverages AI to provide contextually relevant answers from policies and amendments, enhancing information retrieval.',
-      tags: ['SIH','Figma', 'UI Design', 'Prototyping', 'User Research'],
+      tags: ['SIH', 'Figma', 'UI Design', 'Prototyping', 'User Research'],
       link: 'https://www.figma.com/proto/GGStlrHc9eBRQHqR5lxvKz/SIH?page-id=2%3A11&node-id=70-118&viewport=1270%2C-514%2C0.2&t=d3bRQRokhmUtkRay-1&scaling=contain&content-scaling=fixed',
       year: '2025',
-      image: '/images/projects/HeroImageArchon.png',
+      image: '/images/projects/ArchonOgImage.png',
     },
     {
       title: 'NyaySaathi',
@@ -33,9 +52,11 @@ export default function Project (){
       tags: ['Figma', 'UI Design', 'Prototyping', 'User Research'],
       link: 'https://www.figma.com/proto/NaFzrjQb1OIvc0roDdvEcQ/NyaySaathi?page-id=0%3A1&node-id=213-50&viewport=-257%2C-263%2C0.22&t=jKeLC5t3A7XsTSa2-1&scaling=min-zoom&content-scaling=fixed',
       year: '2025',
-      image: '/images/projects/HeroImageNyaySaathi.png',
+      image: '/images/projects/NyaySaathiOgImage.png',
     }
   ];
+
+  const displayedProjects = isExpanded ? projects : projects.slice(0, 4);
 
   return (
     <section className="min-h-screen bg-black text-white px-4 sm:px-6 py-12 sm:py-20">
@@ -50,10 +71,26 @@ export default function Project (){
             My Creations
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            {projects.map((project, index) => (
+            {displayedProjects.map((project, index) => (
               <ProjectCard key={index} project={project} index={index} />
             ))}
           </div>
+
+          {projects.length > 4 && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="flex justify-center mt-8 sm:mt-12"
+            >
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-white border border-slate-700 rounded-lg hover:border-slate-500 transition-all duration-300 bg-slate-900/30 hover:bg-slate-900/50 backdrop-blur-sm"
+              >
+                {isExpanded ? 'Show Less' : 'Explore More'}
+              </button>
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </section>
