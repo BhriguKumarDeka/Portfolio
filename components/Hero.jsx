@@ -1,6 +1,6 @@
 import { SocialButton } from "./SocialButton";
 import { motion, useScroll, useTransform } from 'motion/react';
-import { Github, Linkedin, Mail, Twitter, Download } from 'lucide-react';
+import { Github, Linkedin, Mail, Twitter, Eye } from 'lucide-react';
 import HeroImage from "../components/HeroImage.jsx";
 
 
@@ -27,7 +27,7 @@ export default function Hero() {
 
           <motion.div
             className="w-24 h-24 rounded-full shrink-0 border-2 border-slate-800 relative flex items-center justify-center bg-slate-900 cursor-pointer shadow-lg shadow-slate-900/50"
-            whileHover={{ scale: 1.05, borderColor: "rgb(71, 85, 105)" }}
+            whileHover={{ scale: 1.03, borderColor: "rgb(71, 85, 105)" }}
             transition={{ type: "spring", stiffness: 300 }}
           >
             <HeroImage
@@ -101,7 +101,7 @@ export default function Hero() {
               whileHover={{ scale: 1.02, y: -2, borderColor: "rgb(100, 116, 139)" }}
               whileTap={{ scale: 0.98 }}
             >
-              <Download className="w-4 h-4" />
+              <Eye className="w-4 h-4" />
               View CV
             </motion.button>
           </a>

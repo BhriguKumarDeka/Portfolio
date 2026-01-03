@@ -5,27 +5,24 @@ import Skills from '../components/Skills.jsx'
 import Project from '../components/Project.jsx'
 import Experience from '../components/Experience.jsx';
 import FloatingNav from '../components/FloatingNav.jsx';
-import Contact from '../components/Contact.jsx';
 
 export default function Portfolio() {
   return (
-    <div className="bg-black min-h-screen">
+    <div className="bg-black min-h-screen overflow-hidden">
       <FloatingNav />
       <Hero />
-      <hr className='bg-gray-700 max-w-4xl mx-auto h-[1.5px]' />
+      <hr className='bg-gray-700 max-w-4xl mx-auto h-[1.5px] border-none' />
       <div id="projects">
         <Project />
       </div>
-      <hr className='bg-gray-700 max-w-4xl mx-auto h-[1.5px]' />
+      <hr className='bg-gray-700 max-w-4xl mx-auto h-[1.5px] border-none' />
       <div id="experience">
         <Experience />
       </div>
-      <hr className='bg-gray-700 max-w-4xl mx-auto h-[1.5px]' />
+      <hr className='bg-gray-700 max-w-4xl mx-auto h-[1.5px] border-none' />
       <div id="skills">
         <Skills />
       </div>
-
-      <Contact />
 
       <footer className="py-8 border-t border-slate-900 text-center text-slate-500 text-sm">
         <p>© 2025 All rights reserved.</p>

@@ -14,7 +14,7 @@ export const ExperienceCard = ({ experience, index }) => {
       {/* Timeline dot with glow effect */}
       <motion.div
         className="absolute -left-[9px] top-0 w-4 h-4 bg-slate-700 border-2 border-black rounded-full group-hover:bg-lime-400 group-hover:border-lime-300 group-hover:shadow-lg group-hover:shadow-lime-500/50 transition-all duration-150"
-        whileHover={{ scale: 1.2 }}
+        whileHover={{ scale: 1.05 }}
       />
 
       <div className="pb-8 p-4 -ml-4 rounded-lg bg-slate-900/0 group-hover:bg-slate-900/40 backdrop-blur-sm border border-transparent group-hover:border-slate-800 transition-all duration-150">
