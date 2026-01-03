@@ -1,38 +1,34 @@
-import { motion, useScroll, useTransform } from 'motion/react';
-import { Github, Linkedin, Mail, Twitter, User, Download, MapPin } from 'lucide-react';
-import { SkillBadge } from "./SkillBadge.jsx";
+import { motion } from 'motion/react';
+import { useState, useEffect } from 'react';
+import {
+  Figma, Code2, Palette, Box, Terminal, FileCode,
+  BracesIcon as Braces, Database, Layers, Flame,
+  Wind, Play, Cpu, Globe, Server, Laptop
+} from 'lucide-react';
 
-export default function Skills() {
-  const tools = [
-    { name: 'Figma', color: 'bg-yellow-500' },
-    { name: 'Photoshop', color: 'bg-blue-600' },
-    { name: 'Illustrator', color: 'bg-orange-500' },
-    { name: 'Affinity', color: 'bg-lime-500' },
-    { name: 'Blender', color: 'bg-amber-500' },
-    { name: 'Inkscape', color: 'bg-stone-500' },
-    { name: 'Ibis Paint X', color: 'bg-teal-500' },
-    { name: 'Lottie', color: 'bg-emerald-500' },
-    { name: 'Balsamiq', color: 'bg-orange-300' },
-    { name: 'VS Code', color: 'bg-blue-300' },
-  ];
-  const languages = [
-    { name: 'JavaScript', color: 'bg-yellow-500' },
-    { name: 'Java', color: 'bg-blue-500' },
-    { name: 'C', color: 'bg-blue-600' },
-    { name: 'C++', color: 'bg-blue-700' },
-    { name: 'HTML', color: 'bg-orange-500' },
-    { name: 'CSS', color: 'bg-blue-400' },
-    { name: 'PHP', color: 'bg-blue-400' }
-  ];
-
-  const frameworks = [
-    { name: 'React', color: 'bg-cyan-500' },
-    { name: 'TailwindCSS', color: 'bg-cyan-400' },
-    { name: 'Motion.dev', color: 'bg-amber-400' },
+export default function RubiksGridSkills() {
+  // Flattened the skills into one single array for the grid effect
+  const skills = [
+    { name: 'JS', Icon: FileCode },
+    { name: 'React', Icon: Flame },
+    { name: 'Java', Icon: Code2 },
+    { name: 'HTML', Icon: Braces },
+    { name: 'CSS', Icon: Palette },
+    { name: 'Node', Icon: Server },
+    { name: 'SQL', Icon: Database },
+    { name: 'Tailwind', Icon: Wind },
+    { name: 'Motion', Icon: Play },
+    { name: 'Figma', Icon: Figma },
+    { name: 'Git', Icon: Layers },
+    { name: 'C++', Icon: Cpu },
+    { name: 'Python', Icon: Terminal },
+    { name: 'Next', Icon: Globe },
+    { name: 'Three', Icon: Box },
+    { name: 'System', Icon: Laptop },
   ];
 
   return (
-    <section className=" bg-black text-white px-6 py-20">
+    <section className="bg-black text-white px-4 sm:px-6 py-12 sm:py-20">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -40,44 +36,67 @@ export default function Skills() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold mb-4">
+          <h2 className="text-3xl font-bold mb-8 sm:mb-12 pl-4 sm:pl-14">
             Skills
           </h2>
 
-          <div className="mb-12">
-            <h3 className="text-slate-500 mb-6 tracking-wider">
-              {'< TOOLS />'}
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {tools.map((tool, index) => (
-                <SkillBadge key={index} name={tool.name} color={tool.color} delay={index * 0.05} />
-              ))}
-            </div>
-          </div>
-
-          <div className="mb-12">
-            <h3 className="text-slate-500 mb-6 tracking-wider">
-              {'< LANGUAGES />'}
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {languages.map((lang, index) => (
-                <SkillBadge key={index} name={lang.name} color={lang.color} delay={index * 0.05} />
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-slate-500 mb-6 tracking-wider" >
-              {'< FRAMEWORKS / LIBRARIES />'}
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {frameworks.map((framework, index) => (
-                <SkillBadge key={index} name={framework.name} color={framework.color} delay={index * 0.05} />
-              ))}
-            </div>
+          {/* The Grid */}
+          <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-3">
+            {skills.map((skill, index) => (
+              <FlipCell key={index} skill={skill} index={index} />
+            ))}
           </div>
         </motion.div>
       </div>
     </section>
   );
-};
+}
+
+function FlipCell({ skill, index }) {
+  const [isFlipped, setIsFlipped] = useState(false);
+  const Icon = skill.Icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.3, delay: index * 0.02 }}
+      className="aspect-square relative perspective-1000 cursor-pointer group"
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <motion.div
+        className="w-full h-full relative preserve-3d"
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{
+          duration: 0.35,
+          type: "spring",
+          stiffness: 400,
+          damping: 30
+        }}
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        {/* FRONT FACE */}
+        <div className="absolute inset-0 backface-hidden bg-slate-900/40 backdrop-blur-sm border border-slate-800 hover:border-lime-500/50 rounded-lg flex flex-col items-center justify-center gap-1.5 transition-all duration-150">
+          <Icon className="text-slate-300 group-hover:text-lime-400 w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-150" />
+          <span className="text-slate-400 text-[9px] sm:text-[10px] uppercase tracking-wide">
+            {skill.name}
+          </span>
+        </div>
+
+        {/* BACK FACE */}
+        <div
+          className="absolute inset-0 backface-hidden bg-lime-400 border border-lime-300 rounded-lg flex flex-col items-center justify-center gap-1.5 shadow-lg shadow-lime-500/20"
+          style={{ transform: "rotateY(180deg)" }}
+        >
+          <Icon className="text-slate-900 w-5 h-5 sm:w-6 sm:h-6" />
+          <span className="text-slate-900 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide">
+            {skill.name}
+          </span>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}

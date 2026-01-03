@@ -1,9 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Reenie+Beanie&display=swap");
 @import "tailwindcss";
 
+* {
+  scroll-behavior: smooth;
+}
+
 :root {
   --font-sans: "Bricolage Grotesque", sans-serif;
   --font-hand: "Reenie Beanie", cursive;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 .font-hand {
@@ -21,4 +29,32 @@
 
 .animate-shimmer {
   animation: shimmer 3s linear infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(163, 230, 53, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(163, 230, 53, 0.5);
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
 }

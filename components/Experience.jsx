@@ -20,20 +20,43 @@ export default function Experience() {
   ];
 
   return (
-    <section className=" bg-black text-white px-6 py-20">
-      <div className="max-w-2xl mx-auto">
+    <section className="bg-black text-white px-6 py-20 sm:py-24 relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute top-1/2 right-0 w-96 h-96 bg-lime-500/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-2xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold mb-4">
-            Experience <span className="text-slate-600">Where I've worked</span>
-          </h2>
-          <p className="text-slate-400 mb-12">
+          <motion.h2
+            className="text-4xl sm:text-5xl font-bold mb-3 bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            Experience
+          </motion.h2>
+          <motion.p
+            className="text-slate-500 text-sm mb-3"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            Where I've worked
+          </motion.p>
+          <motion.p
+            className="text-slate-400 mb-12 text-sm sm:text-base"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
             My professional journey and the amazing teams I've been part of.
-          </p>
+          </motion.p>
 
           <div className="space-y-8">
             {experiences.map((exp, index) => (
