@@ -71,7 +71,7 @@ export default function Project() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 pl-4 sm:pl-14">
-            My Creations
+            Projects
           </h2>
           <p
             className="text-slate-400 mb-8 sm:mb-12 pl-4 sm:pl-14 text-sm"
@@ -93,12 +93,12 @@ export default function Project() {
             >
               <motion.button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="group px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-medium text-white border border-slate-700 rounded-xl hover:border-lime-500/50 transition-all duration-300 bg-gradient-to-r from-slate-900/40 to-slate-800/40 hover:from-slate-900/60 hover:to-slate-800/60 backdrop-blur-sm shadow-xl shadow-slate-900/30 relative overflow-hidden"
+                className="group px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-medium text-white border border-slate-700 rounded-xl hover:border-lime-500/50 transition-all duration-300 bg-linear-to-r from-slate-900/40 to-slate-800/40 hover:from-slate-900/60 hover:to-slate-800/60 backdrop-blur-sm shadow-xl shadow-slate-900/30 relative overflow-hidden"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
                 {/* Hover gradient effect */}
-                <span className="absolute inset-0 bg-gradient-to-r from-lime-500/0 via-lime-500/10 to-lime-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="absolute inset-0 bg-linear-to-r from-lime-500/0 via-lime-500/10 to-lime-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <span className="relative z-10">{isExpanded ? '↑ Show Less' : '↓ Explore More'}</span>
               </motion.button>
             </motion.div>

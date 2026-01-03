@@ -5,13 +5,15 @@
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 :root {
   --font-sans: "Bricolage Grotesque", sans-serif;
   --font-hand: "Reenie Beanie", cursive;
-}
-
-body {
-  overflow-x: hidden;
 }
 
 .font-hand {

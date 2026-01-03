@@ -22,7 +22,7 @@ export default function DesignSystem({ isOpen, onClose }) {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 h-screen w-full sm:w-[500px] bg-slate-900 border-l border-slate-800 z-[51] overflow-y-auto"
+            className="fixed right-0 top-0 h-screen w-full bg-slate-900 border-l border-slate-800 z-51 overflow-y-auto"
           >
             <div className="p-4 sm:p-6">
               {/* Header */}
