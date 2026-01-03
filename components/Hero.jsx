@@ -6,8 +6,8 @@ import HeroImage from "../components/HeroImage.jsx";
 
 export default function Hero() {
   return (
-    <section className="min-h-[85vh] bg-black text-white flex items-center justify-center px-6 pt-20 relative">
-      <div className="max-w-2xl relative">
+    <section className="min-h-screen bg-black text-white flex items-center justify-center px-4 sm:px-6 py-12 sm:py-20 relative">
+      <div className="max-w-2xl w-full relative">
         {/* Floating gradient orb */}
         <motion.div
           className="absolute -top-20 -right-20 w-64 h-64 bg-lime-500/5 rounded-full blur-3xl pointer-events-none"

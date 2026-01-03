@@ -59,7 +59,7 @@ export default function Project() {
   const displayedProjects = isExpanded ? projects : projects.slice(0, 4);
 
   return (
-    <section className="min-h-screen bg-black text-white px-4 sm:px-6 py-16 sm:py-24 relative overflow-hidden">
+    <section className="bg-black text-white px-4 sm:px-6 py-12 sm:py-20 relative overflow-hidden">
       {/* Background accent */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-lime-500/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -70,23 +70,14 @@ export default function Project() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <motion.h2
-            className="text-4xl sm:text-5xl font-bold mb-4 sm:mb-6 pl-4 sm:pl-14 bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
+          <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 pl-4 sm:pl-14">
             My Creations
-          </motion.h2>
-          <motion.p
-            className="text-slate-400 mb-8 sm:mb-12 pl-4 sm:pl-14 text-sm sm:text-base"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+          </h2>
+          <p
+            className="text-slate-400 mb-8 sm:mb-12 pl-4 sm:pl-14 text-sm"
           >
             A showcase of my design & development work
-          </motion.p>
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {displayedProjects.map((project, index) => (
               <ProjectCard key={index} project={project} index={index} />
