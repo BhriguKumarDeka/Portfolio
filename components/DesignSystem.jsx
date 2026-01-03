@@ -13,7 +13,7 @@ export default function DesignSystem({ isOpen, onClose }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60]"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 pointer-events-auto"
           />
 
           {/* Panel */}
@@ -22,13 +22,13 @@ export default function DesignSystem({ isOpen, onClose }) {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 h-full w-full sm:w-[500px] bg-slate-900 border-l border-slate-800 z-[70] overflow-y-auto"
+            className="fixed right-0 top-0 h-screen w-full sm:w-[500px] bg-slate-900 border-l border-slate-800 z-[51] overflow-y-auto"
           >
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               {/* Header */}
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
-                <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                  <Palette className="w-6 h-6 text-lime-400" />
+              <div className="flex items-center justify-between mb-4 sm:mb-6 pb-4 border-b border-slate-800">
+                <h2 className="text-lg sm:text-2xl font-bold text-white flex items-center gap-2">
+                  <Palette className="w-5 sm:w-6 h-5 sm:h-6 text-lime-400" />
                   Design System
                 </h2>
                 <button

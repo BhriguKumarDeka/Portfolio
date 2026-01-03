@@ -20,7 +20,7 @@ export default function Experience() {
   ];
 
   return (
-    <section className="bg-black text-white px-6 py-20 sm:py-24 relative overflow-hidden">
+    <section className="bg-black text-white px-4 sm:px-6 py-12 sm:py-20 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-lime-500/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -31,14 +31,9 @@ export default function Experience() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <motion.h2
-            className="text-4xl sm:text-5xl font-bold mb-3 bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
+          <h2 className="text-3xl sm:text-4xl font-bold mb-2 sm:mb-4">
             Experience
-          </motion.h2>
+          </h2>
           <motion.p
             className="text-slate-500 text-sm mb-3"
             initial={{ opacity: 0, x: -20 }}

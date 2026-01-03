@@ -30,10 +30,10 @@ export default function FloatingNav() {
 
   return (
     <>
-      <div className="fixed bottom-4 sm:bottom-8 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
+      <div className="fixed bottom-4 sm:bottom-8 left-0 right-0 z-50 flex justify-center pointer-events-none px-4 sm:px-6">
         <div
           ref={containerRef}
-          className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2 sm:py-2.5 mx-auto 
+          className="flex items-center gap-2 sm:gap-2.5 px-3 sm:px-5 py-3 sm:py-3 mx-auto 
                      bg-slate-900/40 border border-slate-800 
                      backdrop-blur-xl rounded-full 
                      shadow-lg shadow-black/20 pointer-events-auto">
@@ -42,18 +42,20 @@ export default function FloatingNav() {
           ))}
 
           {/* Separator */}
-          <div className="w-px h-6 bg-slate-700 mx-0.5 sm:mx-1" />
+          <div className="w-px h-8 bg-slate-700 mx-1 sm:mx-1.5" />
 
           {/* Design System Button */}
           <button
             onClick={() => setShowDesignSystem(true)}
-            className="relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full 
+            className="relative flex items-center justify-center w-11 h-11 sm:w-10 sm:h-10 rounded-full 
                        bg-slate-800/50 border border-slate-700/50 text-slate-300 
                        hover:bg-slate-800 hover:border-lime-500/50 hover:text-lime-400
+                       active:scale-95
                        transition-all duration-150 group"
             title="View Design System"
+            aria-label="Open Design System"
           >
-            <Palette size={16} className="sm:w-[18px] sm:h-[18px]" strokeWidth={1.5} />
+            <Palette size={20} className="sm:w-[18px] sm:h-[18px]" strokeWidth={1.5} />
           </button>
         </div>
       </div>
@@ -121,13 +123,15 @@ function NavItem({ link }) {
         ref={ref}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full 
+        className="relative flex items-center justify-center w-11 h-11 sm:w-10 sm:h-10 rounded-full 
                    bg-slate-800/50 border border-slate-700/50 text-slate-300 
                    hover:bg-slate-800 hover:border-lime-500/50 hover:text-lime-400
+                   active:scale-95
                    transition-all duration-150"
+        aria-label={link.label}
       >
-        <div ref={iconRef} className="relative z-10">
-          <Icon size={16} className="sm:w-[18px] sm:h-[18px]" strokeWidth={1.5} />
+        <div ref={iconRef} className="relative z-10\">
+          <Icon size={20} className="sm:w-[18px] sm:h-[18px]" strokeWidth={1.5} />
         </div>
       </a>
     </div>
