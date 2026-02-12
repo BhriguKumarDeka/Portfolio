@@ -1,62 +1,223 @@
-@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Reenie+Beanie&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
 @import "tailwindcss";
 
-* {
-  scroll-behavior: smooth;
+@plugin "tailwindcss-animate";
+
+@theme {
+
+  /* Colors - using CSS variables for runtime switching */
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-foreground);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-foreground: var(--color-secondary-foreground);
+
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+
+  --color-card: var(--color-card);
+  --color-card-foreground: var(--color-card-foreground);
+
+  --color-popover: var(--color-popover);
+  --color-popover-foreground: var(--color-popover-foreground);
+  
+  --color-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted-foreground);
+  
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-foreground);
+  
+  --color-border: var(--color-border);
+  --color-input: var(--color-input);
+  --color-ring: var(--color-ring);
+
+  /* Golden Ratio Typography Scale (Toned Down for Compactness) */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.25rem;     /* 20px */
+  --text-xl: 1.75rem;     /* 28px */
+  --text-2xl: 2.5rem;     /* 40px */
+
+  /* Fonts */
+  --font-sans: "Onest", system-ui, sans-serif;
+  --font-mono: "Space Mono", mono;
+
+  /* Golden Ratio Spacing */
+  --spacing-1: 0.25rem;     /* 4px */
+  --spacing-2: 0.5rem;      /* 8px */
+  --spacing-3: 1rem;        /* 16px */
+  --spacing-4: 1.618rem;    /* ~26px */
+  --spacing-5: 2.618rem;    /* ~42px */
+  --spacing-6: 4.236rem;    /* ~68px */
+  --spacing-7: 6.854rem;    /* ~110px */
+  
+  /* Animations */
+  --animate-shimmer: shimmer 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes shimmer {
+    from {
+      transform: translateX(0%); 
+    }
+    to {
+      transform: translateX(200%); 
+    }
+  }
+
+  @keyframes marquee-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes marquee-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  --animate-marquee-left: marquee-left 40s linear infinite;
+  --animate-marquee-right: marquee-right 40s linear infinite;
 }
 
-html,
-body {
-  width: 100%;
-  overflow-x: hidden;
+/* Utilities */
+@utility text-balance {
+  text-wrap: balance;
 }
 
+@utility animate-marquee-left {
+  animation: marquee-left 40s linear infinite;
+}
+
+@utility animate-marquee-right {
+  animation: marquee-right 40s linear infinite;
+}
+
+@utility pause-on-hover {
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility vertical-marquee {
+  display: flex;
+  flex-direction: column;
+  animation: scroll-vertical var(--animation-duration) linear infinite;
+  will-change: transform;
+  
+  &:hover {
+    animation-play-state: paused;
+  }
+
+  & img {
+    min-height: 500px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  @media (max-width: 768px) {
+    & img {
+      min-height: 300px;
+    }
+  }
+}
+
+@keyframes scroll-vertical {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(0, -50%, 0); }
+}
+
+/* Root Semantic Variables */
 :root {
-  --font-sans: "Bricolage Grotesque", sans-serif;
-  --font-hand: "Reenie Beanie", cursive;
+  /* Layout */
+  --phi: 1.618;
+  /* FIXED: Radius needs to be > 0 for the "Gem" look */
+  --radius: 0.5rem; 
+
+  /* LIGHT MODE: "THE PORCELAIN GEM" 
+     Concept: Soft whites, Deep Zinc blacks, Subtle gray borders.
+     Refined for gloss/shadows rather than harsh lines.
+  */
+  --color-background: #f7f7f7;
+  --color-foreground: #111111; /* Zinc 950: Softer than pure black */
+
+  --color-card: #ffffff;
+  --color-card-foreground: #111111;
+
+  --color-popover: #ffffff;
+  --color-popover-foreground: #09090b;
+
+  /* Primary Action: Deep Zinc */
+  --color-primary: #18181b; 
+  --color-primary-foreground: #fafafa;
+
+  /* FIXED: Added Secondary colors for "Ceramic" button variant */
+  --color-secondary: #eeeeee; /* Zinc 100 */
+  --color-secondary-foreground: #18181b;
+
+  --color-muted: #f4f4f5; 
+  --color-muted-foreground: #818189;
+
+  --color-accent: #f4f4f5;
+  --color-accent-foreground: #18181b;
+
+  /* FIXED: Border needs to be subtle, not black, to let shadows work */
+  --color-border: #dfdfdf; /* Zinc 200 */
+  --color-input: #e4e4e7;
+  --color-ring: #18181b;
 }
 
-.font-hand {
-  font-family: var(--font-hand);
+/* DARK MODE: "THE TERMINAL" 
+  Concept: OLED Black void, Laser white vectors.
+*/
+.dark {
+  /* We go slightly off-black (#050505) to give depth against the #000 frame */
+  --color-background: #09090b; 
+  --color-foreground: #fafafa;
+
+  --color-card: #1a1a1d;
+  --color-card-foreground: #fafafa;
+
+  --color-popover: #09090b;
+  --color-popover-foreground: #fafafa;
+
+  /* Primary Action: Solid White Block */
+  --color-primary: #fafafa;
+  --color-primary-foreground: #18181b;
+
+  --color-secondary: #2d2d32;
+  --color-secondary-foreground: #fafafa;
+
+  --color-muted: #27272a;
+  --color-muted-foreground: #a1a1aa;
+
+  --color-accent: #27272a;
+  --color-accent-foreground: #fafafa;
+
+  /* THE HIGH CONTRAST BORDER */
+  --color-border: #27272a;
+  --color-input: #27272a;
+  --color-ring: #d4d4d8;
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
+/* Global Reset & Base Styles */
+@layer base {
+  * {
+    @apply border-border;
   }
-  100% {
-    background-position: -200% 0;
+  
+  html {
+    @apply scroll-smooth;
   }
-}
 
-.animate-shimmer {
-  animation: shimmer 3s linear infinite;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
+  body { 
+    overflow-x: hidden;
+    @apply bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground font-sans transition-colors duration-300;
   }
-  50% {
-    transform: translateY(-10px);
-  }
-}
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes glow {
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(163, 230, 53, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(163, 230, 53, 0.5);
-  }
-}
-
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
 }

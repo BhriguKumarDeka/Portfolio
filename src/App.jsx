@@ -1,32 +1,45 @@
-// import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
-import Hero from '../components/Hero.jsx'
-import Skills from '../components/Skills.jsx'
-import Project from '../components/Project.jsx'
-import Experience from '../components/Experience.jsx';
-import FloatingNav from '../components/FloatingNav.jsx';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState, useEffect, lazy, Suspense } from 'react';
+import { AnimatePresence } from 'motion/react';
+import RootLayout from './components/Layout/RootLayout';
+import LoadingScreen from './components/LoadingScreen';
 
-export default function Portfolio() {
+// Lazy Load Pages
+const Home = lazy(() => import('./pages/Home'));
+const Playground = lazy(() => import('./pages/Playground'));
+const ProjectsPage = lazy(() => import('./pages/Projects'));
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
+
+export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate initial asset loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2 seconds splash screen
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="bg-black min-h-screen overflow-hidden">
-      <FloatingNav />
-      <Hero />
-      <hr className='bg-gray-700 max-w-4xl mx-auto h-[1.5px] border-none' />
-      <div id="projects">
-        <Project />
-      </div>
-      <hr className='bg-gray-700 max-w-4xl mx-auto h-[1.5px] border-none' />
-      <div id="experience">
-        <Experience />
-      </div>
-      <hr className='bg-gray-700 max-w-4xl mx-auto h-[1.5px] border-none' />
-      <div id="skills">
-        <Skills />
-      </div>
+    <BrowserRouter>
+      {/* Loading Screen Overlay - Absolute position handled by fixed inset-0 in component */}
+      <AnimatePresence>
+        {isLoading && <LoadingScreen key="loader" />}
+      </AnimatePresence>
 
-      <footer className="py-8 border-t border-slate-900 text-center text-slate-500 text-sm">
-        <p>© 2025 All rights reserved.</p>
-      </footer>
-    </div>
+      {/* Main App Content - Always mounted to load in background */}
+      <RootLayout>
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/playground" element={<Playground />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/project/:slug" element={<ProjectDetail />} />
+          </Routes>
+        </Suspense>
+      </RootLayout>
+    </BrowserRouter>
   );
 }
