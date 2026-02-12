@@ -9,6 +9,8 @@ import { Typography } from '../components/ui/Typography';
 import { Button } from '../components/ui/Button';
 import { AnimatePresence } from 'motion/react';
 
+import PercentageLoader from '../components/Playground/PercentageLoader';
+
 // Lazy load heavy playground sections
 const UIPages = React.lazy(() => import('../components/Playground/UIPages'));
 const FigmaExploration = React.lazy(() => import('../components/Playground/Exploration'));
@@ -129,11 +131,7 @@ export default function Playground() {
 
       {/* --- Content Sections --- */}
       <div className="px-4 pb-32 space-y-8">
-        <React.Suspense fallback={
-          <div className="w-full py-20 flex items-center justify-center opacity-20">
-            <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
-          </div>
-        }>
+        <React.Suspense fallback={<PercentageLoader />}>
           <div id="figma">
             <FigmaExploration data={playgroundData.figma} />
           </div>
