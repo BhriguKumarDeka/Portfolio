@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Cancel01Icon, Download01Icon, File01Icon } from 'hugeicons-react';
 import { Button } from './ui/Button';
@@ -14,7 +15,8 @@ export default function CVModal({ isOpen, onClose, cvUrl }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  return (
+  // Use Portal to render outside parent stacking contexts
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <>
@@ -24,7 +26,7 @@ export default function CVModal({ isOpen, onClose, cvUrl }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
+            className="fixed inset-0 z-[999] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
           >
             {/* Modal Container */}
             <motion.div
@@ -32,11 +34,11 @@ export default function CVModal({ isOpen, onClose, cvUrl }) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
-              className="w-full max-w-5xl h-[85vh] flex flex-col bg-background rounded-2xl border border-border/50 shadow-2xl relative overflow-hidden"
+              className="w-full max-w-5xl h-[80vh] sm:h-[85vh] flex flex-col bg-background rounded-2xl border border-border/50 shadow-2xl relative overflow-hidden"
             >
 
               {/* Header */}
-              <div className="flex items-center justify-between px-4 py-3 sm:px-6 border-b border-border/50 bg-secondary/5">
+              <div className="flex items-center justify-between px-4 py-3 sm:px-6 border-b border-border/50 bg-secondary/5 shrink-0">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-primary/10 rounded-lg">
                     <File01Icon size={20} className="text-primary" />
@@ -76,7 +78,7 @@ export default function CVModal({ isOpen, onClose, cvUrl }) {
               </div>
 
               {/* Main PDF Viewer */}
-              <div className="flex-1 w-full bg-muted/20 relative">
+              <div className="flex-1 w-full bg-muted/20 relative overflow-hidden">
                 <iframe
                   src={`${cvUrl}#toolbar=0&navpanes=0&scrollbar=0`}
                   className="w-full h-full border-none"
@@ -85,7 +87,7 @@ export default function CVModal({ isOpen, onClose, cvUrl }) {
               </div>
 
               {/* Mobile Footer (Download Button) */}
-              <div className="sm:hidden p-4 border-t border-border/50 bg-background flex justify-center">
+              <div className="sm:hidden p-4 border-t border-border/50 bg-background flex justify-center shrink-0">
                 <Button
                   variant="primary"
                   className="w-full"
@@ -107,6 +109,7 @@ export default function CVModal({ isOpen, onClose, cvUrl }) {
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
