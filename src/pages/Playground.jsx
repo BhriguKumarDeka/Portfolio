@@ -6,13 +6,11 @@ import { ArrowLeft01Icon, CommandLineIcon, Sun01Icon, Moon01Icon } from 'hugeico
 
 import BubbleMenu from '../components/Playground/BubbleMenu';
 import { Typography } from '../components/ui/Typography';
-import { Button } from '../components/ui/Button';
 import { AnimatePresence } from 'motion/react';
 
 
 
 // Lazy load heavy playground sections
-const UIPages = React.lazy(() => import('../components/Playground/UIPages'));
 const FigmaExploration = React.lazy(() => import('../components/Playground/Exploration'));
 const Animations = React.lazy(() => import('../components/Playground/Animations'));
 const SpotifyCovers = React.lazy(() => import('../components/Playground/SpotifyCovers'));
@@ -26,20 +24,6 @@ const SectionDivider = ({ label }) => (
   <div className="relative w-full my-8 flex items-center">
     {/* Bleeding Line */}
     <div className="absolute left-[calc(-50vw+50%)] w-screen border-t border-dashed border-border/60" />
-
-    {/* Technical Crosshair Marker (Left) */}
-    <div className="absolute left-0 -ml-[5px] -mt-px text-border/80">
-      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 0V10M0 5H10" stroke="currentColor" strokeWidth="1" />
-      </svg>
-    </div>
-
-    {/* Technical Crosshair Marker (Right) */}
-    <div className="absolute right-0 -mr-[5px] -mt-px text-border/80">
-      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 0V10M0 5H10" stroke="currentColor" strokeWidth="1" />
-      </svg>
-    </div>
   </div>
 );
 
@@ -53,6 +37,12 @@ const SECTION_COLORS = {
   characters: '#FFC700',
   extras: '#00D1FF',
 };
+
+const SectionSkeleton = () => (
+  <div className="w-full py-16 flex items-center justify-center opacity-20">
+    <div className="w-6 h-6 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+  </div>
+);
 
 export default function Playground() {
   const [activeSection, setActiveSection] = React.useState(null);
@@ -94,14 +84,6 @@ export default function Playground() {
 
   return (
     <>
-      {/* Subtle Background Texture */}
-      <div
-        className="absolute inset-0 opacity-[0.1] dark:opacity-[0.1] pointer-events-none z-[-1]"
-        style={{
-          backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`,
-          backgroundSize: '24px 24px',
-        }}
-      />
 
       {/* --- Hero Section (Manifest Style) --- */}
       <div className="px-4 py-8 relative pt-4">
@@ -131,51 +113,62 @@ export default function Playground() {
 
       {/* --- Content Sections --- */}
       <div className="px-4 pb-32 space-y-8">
-        <React.Suspense fallback={
-          <div className="w-full py-20 flex items-center justify-center opacity-20">
-            <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
-          </div>
-        }>
-          <div id="figma">
+
+        {/* Spinner shown per section independently */}
+        <div id="figma">
+          <React.Suspense fallback={<SectionSkeleton />}>
             <FigmaExploration data={playgroundData.figma} />
-          </div>
+          </React.Suspense>
+        </div>
 
-          <SectionDivider />
+        <SectionDivider />
 
-          <div id="animations">
+        <div id="animations">
+          <React.Suspense fallback={<SectionSkeleton />}>
             <Animations data={playgroundData.animations} />
-          </div>
+          </React.Suspense>
+        </div>
 
-          <SectionDivider />
+        <SectionDivider />
 
-          <div id="3d">
+        <div id="3d">
+          <React.Suspense fallback={<SectionSkeleton />}>
             <ThreeDArts data={playgroundData.threeD} />
-          </div>
+          </React.Suspense>
+        </div>
 
-          <SectionDivider />
+        <SectionDivider />
 
-          <div id="posters">
+        <div id="posters">
+          <React.Suspense fallback={<SectionSkeleton />}>
             <Posters data={playgroundData.posters} />
-          </div>
+          </React.Suspense>
+        </div>
 
-          <SectionDivider />
+        <SectionDivider />
 
-          <div id="spotify">
+        <div id="spotify">
+          <React.Suspense fallback={<SectionSkeleton />}>
             <SpotifyCovers data={playgroundData.spotify} />
-          </div>
+          </React.Suspense>
+        </div>
 
-          <SectionDivider />
+        <SectionDivider />
 
-          <div id="characters">
+        <div id="characters">
+          <React.Suspense fallback={<SectionSkeleton />}>
             <Characters data={playgroundData.characters} />
-          </div>
+          </React.Suspense>
+        </div>
 
-          <SectionDivider />
+        <SectionDivider />
 
-          <div id="extras">
+        <div id="extras">
+          <React.Suspense fallback={<SectionSkeleton />}>
             <Extras data={playgroundData.misc} />
-          </div>
-        </React.Suspense>
+          </React.Suspense>
+        </div>
+
       </div>
     </>
   );

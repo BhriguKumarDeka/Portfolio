@@ -10,7 +10,6 @@ const Extras = ({ data }) => {
     if (!scrollRef.current) return;
     const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
 
-    // Calculate progress (0 to data.length - 1)
     const scrollPercentage = scrollLeft / (scrollWidth - clientWidth);
     const index = Math.round(scrollPercentage * (data.length - 1));
 

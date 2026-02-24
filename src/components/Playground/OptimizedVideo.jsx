@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-const OptimizedVideo = ({ src, className, ...props }) => {
+const OptimizedVideo = ({ src, poster, className, ...props }) => {
   const videoRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
 
@@ -38,9 +38,11 @@ const OptimizedVideo = ({ src, className, ...props }) => {
     <video
       ref={videoRef}
       src={src}
+      poster={poster}
       muted
       loop
       playsInline
+      preload="none"
       className={`${className} transition-opacity duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}
       {...props}
     />
