@@ -37,7 +37,7 @@ export default function Contact() {
         className="
           relative w-full 
           bg-accent
-          rounded-lg ring-1 ring-border/80
+          rounded-lg ring-1 ring-border/20
           p-2 shadow-2xl shadow-black/10
           inset-shadow-sm inset-shadow-accent
         "

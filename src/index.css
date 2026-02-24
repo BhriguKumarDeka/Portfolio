@@ -6,7 +6,6 @@
 
 @theme {
 
-  /* Colors - using CSS variables for runtime switching */
   --color-primary: var(--color-primary);
   --color-primary-foreground: var(--color-primary-foreground);
   --color-secondary: var(--color-secondary);
@@ -31,46 +30,40 @@
   --color-input: var(--color-input);
   --color-ring: var(--color-ring);
 
-  /* Golden Ratio Typography Scale (Toned Down for Compactness) */
-  --text-xs: 0.75rem;     /* 12px */
-  --text-sm: 0.875rem;    /* 14px */
-  --text-base: 1rem;      /* 16px */
-  --text-lg: 1.25rem;     /* 20px */
-  --text-xl: 1.75rem;     /* 28px */
-  --text-2xl: 2.5rem;     /* 40px */
+  /* Typography Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.5rem;
 
-  /* Fonts */
   --font-sans: "Onest", system-ui, sans-serif;
   --font-mono: "Space Mono", mono;
 
-  /* Golden Ratio Spacing */
-  --spacing-1: 0.25rem;     /* 4px */
-  --spacing-2: 0.5rem;      /* 8px */
-  --spacing-3: 1rem;        /* 16px */
-  --spacing-4: 1.618rem;    /* ~26px */
-  --spacing-5: 2.618rem;    /* ~42px */
-  --spacing-6: 4.236rem;    /* ~68px */
-  --spacing-7: 6.854rem;    /* ~110px */
-  
-  /* Animations */
+  /* Spacing */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 1rem;
+  --spacing-4: 1.618rem;
+  --spacing-5: 2.618rem;
+  --spacing-6: 4.236rem;
+  --spacing-7: 6.854rem;
+
   --animate-shimmer: shimmer 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
   @keyframes shimmer {
-    from {
-      transform: translateX(0%); 
-    }
-    to {
-      transform: translateX(200%); 
-    }
+    from { transform: translateX(0%); }
+    to   { transform: translateX(200%); }
   }
 
   @keyframes marquee-left {
-    0% { transform: translateX(0); }
+    0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
 
   @keyframes marquee-right {
-    0% { transform: translateX(-50%); }
+    0%   { transform: translateX(-50%); }
     100% { transform: translateX(0); }
   }
 
@@ -78,7 +71,6 @@
   --animate-marquee-right: marquee-right 40s linear infinite;
 }
 
-/* Utilities */
 @utility text-balance {
   text-wrap: balance;
 }
@@ -128,23 +120,16 @@
 }
 
 @keyframes scroll-vertical {
-  0% { transform: translate3d(0, 0, 0); }
+  0%   { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(0, -50%, 0); }
 }
 
-/* Root Semantic Variables */
 :root {
-  /* Layout */
   --phi: 1.618;
-  /* FIXED: Radius needs to be > 0 for the "Gem" look */
-  --radius: 0.5rem; 
+  --radius: 0.5rem;
 
-  /* LIGHT MODE: "THE PORCELAIN GEM" 
-     Concept: Soft whites, Deep Zinc blacks, Subtle gray borders.
-     Refined for gloss/shadows rather than harsh lines.
-  */
   --color-background: #f7f7f7;
-  --color-foreground: #111111; /* Zinc 950: Softer than pure black */
+  --color-foreground: #111111;
 
   --color-card: #ffffff;
   --color-card-foreground: #111111;
@@ -152,32 +137,25 @@
   --color-popover: #ffffff;
   --color-popover-foreground: #09090b;
 
-  /* Primary Action: Deep Zinc */
-  --color-primary: #18181b; 
+  --color-primary: #18181b;
   --color-primary-foreground: #fafafa;
 
-  /* FIXED: Added Secondary colors for "Ceramic" button variant */
-  --color-secondary: #eeeeee; /* Zinc 100 */
+  --color-secondary: #eeeeee;
   --color-secondary-foreground: #18181b;
 
-  --color-muted: #f4f4f5; 
+  --color-muted: #f4f4f5;
   --color-muted-foreground: #818189;
 
   --color-accent: #f4f4f5;
   --color-accent-foreground: #18181b;
 
-  /* FIXED: Border needs to be subtle, not black, to let shadows work */
-  --color-border: #dfdfdf; /* Zinc 200 */
+  --color-border: #d5d4d4;
   --color-input: #e4e4e7;
   --color-ring: #18181b;
 }
 
-/* DARK MODE: "THE TERMINAL" 
-  Concept: OLED Black void, Laser white vectors.
-*/
 .dark {
-  /* We go slightly off-black (#050505) to give depth against the #000 frame */
-  --color-background: #09090b; 
+  --color-background: #09090b;
   --color-foreground: #fafafa;
 
   --color-card: #1a1a1d;
@@ -186,7 +164,6 @@
   --color-popover: #09090b;
   --color-popover-foreground: #fafafa;
 
-  /* Primary Action: Solid White Block */
   --color-primary: #fafafa;
   --color-primary-foreground: #18181b;
 
@@ -199,13 +176,11 @@
   --color-accent: #27272a;
   --color-accent-foreground: #fafafa;
 
-  /* THE HIGH CONTRAST BORDER */
-  --color-border: #27272a;
+  --color-border: #2e2e31;
   --color-input: #27272a;
   --color-ring: #d4d4d8;
 }
 
-/* Global Reset & Base Styles */
 @layer base {
   * {
     @apply border-border;
@@ -215,9 +190,8 @@
     @apply scroll-smooth;
   }
 
-  body { 
+  body {
     overflow-x: hidden;
     @apply bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground font-sans transition-colors duration-300;
   }
-
 }
