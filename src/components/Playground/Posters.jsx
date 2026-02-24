@@ -14,10 +14,10 @@ const Posters = React.memo(({ data }) => {
 
   return (
     <SectionWrapper title="Posters">
-      <div className="relative w-full flex flex-col items-center py-6 px-4 overflow-hidden">
+      <div className="relative w-full flex flex-col items-center py-6 px-2 overflow-hidden">
 
         {/* Poster + Side Chevrons */}
-        <div className="relative w-full max-w-lg flex items-center justify-center gap-4">
+        <div className="relative w-full max-w-xl flex items-center justify-center gap-2">
 
           {/* Left Chevron */}
           <motion.button
@@ -43,7 +43,7 @@ const Posters = React.memo(({ data }) => {
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   className="absolute inset-0 z-10"
                 >
-                  <div className="w-full h-full rounded-2xl overflow-hidden shadow-2xl">
+                  <div className="w-full h-full rounded-md overflow-hidden shadow-2xl">
                     <img
                       src={data[index].image}
                       alt={`Poster ${index + 1}`}

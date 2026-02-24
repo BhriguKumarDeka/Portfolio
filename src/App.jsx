@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { AnimatePresence } from 'motion/react';
 import RootLayout from './components/Layout/RootLayout';
-import LoadingScreen from './components/LoadingScreen';
+import SignatureLoader from './components/SignatureLoader';
 
 const Home = lazy(() => import('./pages/Home'));
 const Playground = lazy(() => import('./pages/Playground'));
@@ -15,7 +15,7 @@ export default function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 3200);
 
     return () => clearTimeout(timer);
   }, []);
@@ -23,7 +23,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <AnimatePresence>
-        {isLoading && <LoadingScreen key="loader" />}
+        {isLoading && <SignatureLoader key="loader" />}
       </AnimatePresence>
 
       <RootLayout>
