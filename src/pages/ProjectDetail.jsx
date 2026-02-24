@@ -4,8 +4,6 @@ import { motion } from 'motion/react';
 import { portfolioData } from '../data/portfolioData';
 import {
    Github01Icon,
-   Calendar01Icon,
-   Folder01Icon,
    CpuIcon,
    CheckListIcon,
    DashboardSquare01Icon,
@@ -15,14 +13,10 @@ import {
 import { Typography } from '../components/ui/Typography';
 import { Button } from '../components/ui/Button';
 
-const SectionDivider = ({ label }) => (
-   <div className="w-full relative h-px flex items-center justify-center my-16 opacity-40">
-      <div className="absolute w-full border-t border-dashed border-border pointer-events-none" />
-      {label && (
-         <div className="relative z-10 bg-background px-3 py-1 border border-border rounded-full text-[9px] font-mono text-muted-foreground uppercase tracking-widest">
-            {label}
-         </div>
-      )}
+const SectionLabel = ({ icon: Icon, label }) => (
+   <div className="flex items-center gap-2 mb-4">
+      <Icon size={16} className="text-muted-foreground" />
+      <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest">{label}</span>
    </div>
 );
 
@@ -46,8 +40,8 @@ const ProjectDetail = () => {
    if (!project) {
       return (
          <div className="min-h-[60vh] flex flex-col items-center justify-center p-4">
-            <Typography variant="h2" className="mb-4">ERR_404: PROJECT_MISSING</Typography>
-            <Button onClick={() => navigate('/projects')}>RETURN_TO_BASE</Button>
+            <Typography variant="h2" className="mb-4">Project not found</Typography>
+            <Button onClick={() => navigate('/projects')}>Back to Projects</Button>
          </div>
       );
    }
@@ -59,7 +53,6 @@ const ProjectDetail = () => {
    const liveLink = project.link || "#";
    const isGithub = liveLink.includes("github");
 
-   // Helper for Embeds
    const getEmbedUrl = (url) => {
       if (!url) return '';
       if (url.includes('youtu.be/')) return `https://www.youtube.com/embed/${url.split('youtu.be/')[1].split('?')[0]}`;
@@ -70,31 +63,27 @@ const ProjectDetail = () => {
    return (
       <main className="pt-4 pb-32">
 
-         {/* Header & Meta */}
+         {/* Title */}
          <section className="px-4 mb-8">
-
             <motion.div
                initial={{ opacity: 0, y: 10 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.5 }}
-               className="flex flex-col gap-4"
             >
                <Typography variant="h1" className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
                   {project.title}
                </Typography>
-
             </motion.div>
          </section>
 
-
+         {/* Media Card */}
          <section className="px-4 mb-12">
             <motion.div
                initial={{ opacity: 0, scale: 0.98, y: 20 }}
                animate={{ opacity: 1, scale: 1, y: 0 }}
                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-               className="rounded-xl border border-border bg-background shadow-2xl overflow-hidden"
+               className="rounded-xl border border-border bg-background shadow-lg overflow-hidden"
             >
-               {/* Media Display */}
                <div className={`relative w-full bg-secondary/5 ${hasFigma ? 'aspect-4/3' : 'aspect-video'}`}>
                   {hasVideo ? (
                      <iframe
@@ -117,120 +106,81 @@ const ProjectDetail = () => {
                         className="w-full h-full object-cover"
                      />
                   )}
-
-                  {/* Screen Glare Overlay */}
                   <div className="absolute inset-0 bg-linear-to-tr from-white/5 to-transparent pointer-events-none" />
                </div>
 
-               {/* Controls */}
-               <div className="border-t border-border bg-secondary/10 p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                  {/* Left: Status */}
-                  <div className="hidden sm:flex items-center gap-3">
-                     <div className="flex flex-col">
-                        <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider">Access Protocol</span>
-                        <span className="text-xs font-bold text-foreground">PUBLIC_READ</span>
-                     </div>
-                  </div>
-
-                  {/* Right: Primary Actions */}
-                  <div className="flex w-full sm:w-auto items-center gap-3">
-                     {/* Secondary Button */}
-                     {isGithub && (
-                        <Button
-                           variant="outline"
-                           size="sm"
-                           className="flex-1 sm:flex-none border-border/60"
-                           onClick={() => window.open(liveLink, "_blank")}
-                        >
-                           <CodeCircleIcon size={16} className="mr-2" />
-                           Src
-                        </Button>
-                     )}
-
-                     {/* Primary Launch Button */}
+               {/* Actions Bar */}
+               <div className="border-t border-border bg-secondary/10 p-4 flex items-center justify-center gap-3">
+                  {isGithub && (
                      <Button
-                        variant="primary"
+                        variant="outline"
                         size="sm"
-                        className="flex-1 sm:flex-none w-30 shadow-lg shadow-primary/20"
+                        className="border-border/60"
                         onClick={() => window.open(liveLink, "_blank")}
                      >
-                        {isGithub ? (
-                           <>
-                              <Github01Icon size={16} className="mr-2" />
-                              Repository
-                           </>
-                        ) : (
-                           <>
-                              <PlayIcon size={16} className="inline mr-2" strokeWidth={2} />
-                              View
-                           </>
-                        )}
+                        <CodeCircleIcon size={16} className="mr-2" />
+                        Source
                      </Button>
-                  </div>
+                  )}
+                  <Button
+                     variant="primary"
+                     size="sm"
+                     className="shadow-lg shadow-primary/20"
+                     onClick={() => window.open(liveLink, "_blank")}
+                  >
+                     {isGithub ? (
+                        <>
+                           <Github01Icon size={16} className="mr-2" />
+                           Repository
+                        </>
+                     ) : (
+                        <>
+                           <PlayIcon size={16} className="inline mr-2" strokeWidth={2} />
+                           Live
+                        </>
+                     )}
+                  </Button>
                </div>
             </motion.div>
          </section>
 
+         {/* Details */}
+         <section className="px-4 flex flex-col gap-12">
 
-         {/* Project Details */}
-         <section className="px-4 flex flex-col gap-10">
-
-            {/* BLOCK A: Mission Brief (Overview) */}
+            {/* Overview */}
             <motion.div
                initial={{ opacity: 0, y: 10 }}
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true }}
                transition={{ duration: 0.5 }}
-               className="relative group"
             >
-               <div className="flex items-center gap-2 mb-3">
-                  <DashboardSquare01Icon size={18} className="text-primary" />
-                  <Typography variant="h3" className="text-lg font-semibold tracking-tight">Mission Brief</Typography>
-               </div>
-
-               <div className="bg-secondary/30 border border-border/50 rounded-lg p-6 md:p-8 inset-shadow-sm relative overflow-hidden">
-                  {/* Decorative Corner Marker */}
-                  <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/20 rounded-tl-lg" />
-
-                  <Typography variant="body" className="text-muted-foreground leading-relaxed relative z-10">
-                     {project.fullDescription || project.description}
-                  </Typography>
-               </div>
+               <SectionLabel icon={DashboardSquare01Icon} label="Overview" />
+               <p className="text-muted-foreground leading-relaxed text-sm">
+                  {project.fullDescription || project.description}
+               </p>
             </motion.div>
 
-
-            {/* BLOCK B: System Architecture (Tech Stack) */}
-            <motion.div
-               initial={{ opacity: 0, y: 10 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ duration: 0.5, delay: 0.1 }}
-            >
-               <div className="flex items-center gap-2 mb-4">
-                  <CpuIcon size={18} className="text-primary" />
-                  <Typography variant="h3" className="text-lg font-semibold tracking-tight">System Architecture</Typography>
-               </div>
-
-               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                  {project.techStack?.map((tech, i) => (
-                     <div
-                        key={i}
-                        className="
-                       flex items-center gap-2 px-3 py-2.5 rounded-md
-                       bg-background border border-border/60
-                       hover:border-primary/40 hover:bg-secondary/10 transition-colors
-                    "
-                     >
-                        <div className="w-1.5 h-1.5 bg-muted-foreground/40 rounded-full" />
-                        <span className="text-xs font-mono font-medium text-foreground/80">{tech}</span>
-                     </div>
-                  ))}
-               </div>
-            </motion.div>
-
-
-            <SectionDivider label="OPERATIONAL LOG" />
-
+            {/* Tech Stack */}
+            {project.techStack?.length > 0 && (
+               <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.05 }}
+               >
+                  <SectionLabel icon={CpuIcon} label="Tech Stack" />
+                  <div className="flex flex-wrap gap-2">
+                     {project.techStack.map((tech, i) => (
+                        <span
+                           key={i}
+                           className="px-3 py-1.5 text-xs font-medium rounded-full border border-border/60 bg-secondary/20 text-foreground/80 tracking-wide"
+                        >
+                           {tech}
+                        </span>
+                     ))}
+                  </div>
+               </motion.div>
+            )}
 
             {/* Features */}
             {project.features && (
@@ -238,57 +188,35 @@ const ProjectDetail = () => {
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
                >
-                  <div className="flex items-center gap-2 mb-6">
-                     <CheckListIcon size={18} className="text-primary" />
-                     <Typography variant="h3" className="text-lg font-semibold tracking-tight">Core Capabilities</Typography>
-                  </div>
-
-                  <div className="pl-3 relative space-y-8">
-                     {/* Continuous Timeline Line */}
-                     <div className="absolute left-[5.5px] top-2 bottom-0 w-px bg-gradient-to-b from-border via-border to-transparent" />
-
+                  <SectionLabel icon={CheckListIcon} label="Features" />
+                  <div className="flex flex-col gap-3">
                      {project.features.map((feature, i) => {
-                        const [title, ...rest] = feature.split(':');
-                        const desc = rest.join(':');
+                        const colonIdx = feature.indexOf(':');
+                        const title = colonIdx !== -1 ? feature.slice(0, colonIdx).trim() : feature;
+                        const desc = colonIdx !== -1 ? feature.slice(colonIdx + 1).trim() : '';
 
                         return (
-                           <div key={i} className="relative pl-8 group">
-                              {/* Node Indicator */}
-                              <div className="absolute left-0 top-1.5 w-[12px] h-[12px] bg-background border border-border rounded-sm rotate-45 group-hover:border-primary group-hover:bg-primary transition-all duration-300 z-10 shadow-sm">
-                                 <div className="absolute inset-[3px] bg-background opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[1px]" />
-                              </div>
-
-                              <div className="flex flex-col gap-1">
-                                 <Typography variant="body" className="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">
-                                    {title}
-                                 </Typography>
+                           <div
+                              key={i}
+                              className="flex gap-4 p-2 px-4 rounded-lg border border-border/50 bg-secondary/50 hover:bg-secondary/20 transition-colors"
+                           >
+                              <span className="shrink-0 w-4 h-4 flex bg-primary/20 items-center justify-center rounded-full border border-border/60 text-xs font-mono text-white mt-2">
+                                 {String(i + 1).padStart(2, '0')}
+                              </span>
+                              <div className="flex flex-col gap-0.5">
+                                 <span className="text-sm font-semibold text-foreground">{title}</span>
                                  {desc && (
-                                    <Typography variant="small" className="text-muted-foreground/80 leading-relaxed text-xs">
-                                       {desc}
-                                    </Typography>
+                                    <span className="text-xs text-muted-foreground leading-relaxed">{desc}</span>
                                  )}
                               </div>
                            </div>
-                        )
+                        );
                      })}
                   </div>
                </motion.div>
             )}
-
-
-            {/* Footer Diagnostics */}
-            <div className="mt-8 pt-8 border-t border-dashed border-border/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 opacity-60">
-               <div className="flex flex-col gap-1">
-                  <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-widest">Render ID</span>
-                  <span className="text-[10px] font-mono text-foreground">{Math.random().toString(36).substring(7).toUpperCase()}</span>
-               </div>
-               <div className="flex flex-col gap-1 sm:text-right">
-                  <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-widest">System Status</span>
-                  <span className="text-[10px] font-mono text-emerald-500">OPERATIONAL // STABLE</span>
-               </div>
-            </div>
 
          </section>
       </main>

@@ -43,7 +43,6 @@ export default function Contact() {
         "
       >
 
-        {/* Screen Module */}
         <div className="relative w-full rounded-lg overflow-hidden bg-primary mb-4 ring-1 ring-border shadow-inner isolate">
           <div className="absolute inset-0">
             <Dithering
@@ -82,7 +81,6 @@ export default function Contact() {
             className="col-span-1 h-32"
             label="Send Mail"
           >
-            {/* <Mail size={30} className='text-muted-foreground'/> */}
           </TactileButton>
 
           <TactileButton
@@ -90,11 +88,9 @@ export default function Contact() {
             className="col-span-1 h-32"
             label="Cappucino"
           >
-            {/* <Coffee size={30} className='text-muted-foreground'/> */}
           </TactileButton>
 
           <div className="col-span-1 flex flex-col gap-[0.15rem]">
-            {/* Secondary Actions */}
             <TactileButton
               onClick={handleCopy}
               className="flex-1"
@@ -108,13 +104,11 @@ export default function Contact() {
               className="flex-1"
               label="MEETING"
             >
-              {/* <Calendar size={18} className='text-muted-foreground'/> */}
             </TactileButton>
           </div>
 
         </div>
 
-        {/* Branding */}
         <div className="mt-4 flex items-center justify-between px-2 opacity-40">
           <div className="flex gap-1">
             {[...Array(8)].map((_, i) => (
@@ -145,7 +139,6 @@ function TactileButton({ children, onClick, label }) {
                 transition-all duration-100 ease-out
                 flex flex-col items-center justify-center"
     >
-      {/* Content */}
       <div className="relative z-10">
         {children}
       </div>
