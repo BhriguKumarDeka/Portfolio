@@ -24,7 +24,7 @@ const SignatureLoader = () => {
               opacity: { duration: 0.3 },
             }}
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="8"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
@@ -41,7 +41,7 @@ const SignatureLoader = () => {
               opacity: { duration: 0.2, delay: 2.8 },
             }}
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="8"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
