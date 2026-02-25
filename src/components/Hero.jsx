@@ -62,7 +62,7 @@ export default function Hero({ data }) {
             <div className="flex flex-col gap-2">
               <Typography variant="h1" className="text-foreground tracking-tight flex items-center gap-2">
                 {data.name}
-                <CheckmarkBadge01Icon size={24} fill="foreground" className="text-background" stroke="background" strokeWidth={1.5} />
+                <CheckmarkBadge01Icon size={24} className="text-white fill-blue-500 stroke-white" strokeWidth={1.2} />
               </Typography>
 
               <div className="flex items-center gap-3 text-muted-foreground">
