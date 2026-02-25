@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { AnimatePresence } from 'motion/react';
+import { Analytics } from '@vercel/analytics/react';
 import RootLayout from './components/Layout/RootLayout';
 import SignatureLoader from './components/SignatureLoader';
 
@@ -36,6 +37,7 @@ export default function App() {
           </Routes>
         </Suspense>
       </RootLayout>
+      <Analytics />
     </BrowserRouter>
   );
 }
