@@ -22,7 +22,7 @@ const VideoCard = ({ src, className }) => {
 
   return (
     <div
-      className={`rounded-2xl overflow-hidden bg-secondary/5 border border-border/40 relative group ${className}`}
+      className={`rounded-2xl overflow-hidden bg-secondary/5 relative group ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -32,7 +32,7 @@ const VideoCard = ({ src, className }) => {
         muted
         playsInline
         preload="metadata"
-        className="w-full h-full object-cover transition-opacity duration-300"
+        className="w-full h-full object-cover duration-300"
         src={`${src}#t=1.5`}
       />
     </div>
@@ -41,7 +41,7 @@ const VideoCard = ({ src, className }) => {
 
 export default function PlaygroundPreview() {
   const animationsPreview = playgroundData.figma[0];
-  const threeDPreview = playgroundData.threeD[0];
+  const threeDPreview = playgroundData.threeD[1];
 
   return (
     <section className="px-4 py-12 relative overflow-hidden">

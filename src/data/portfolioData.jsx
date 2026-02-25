@@ -205,7 +205,7 @@ export const portfolioData = {
   ],
   footer: {
     year: new Date().getFullYear(),
-    text: "All rights reserved.",
-    love: "Built with love by Bhrigu Kumar Deka"
+    text: "All rights reserved",
+    love: "Built with ❤︎ by Bhrigu Kumar Deka"
   }
 };
