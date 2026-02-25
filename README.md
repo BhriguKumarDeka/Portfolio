@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Project Banner" src="public/images/og-image.jpg" width="100%" style="border-radius: 12px; margin-bottom: 2rem;" />
+  <img alt="Project Banner" src="public/images/thumbnail.png" width="100%" style="border-radius: 12px; margin-bottom: 2rem;" />
 
   <h1>Portfolio</h1>
   <p><strong>A modern, highly interactive, and uniquely designed personal portfolio website showcasing creatively engineered web experiences. Built with an emphasis on "Cosmic Minimalism", smooth animations, and a focus on both aesthetics and performance.</strong></p>
