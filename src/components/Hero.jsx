@@ -46,9 +46,9 @@ export default function Hero({ data }) {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="-mt-14 sm:-mt-16 rounded-lg shadow-lg shadow-black/5"
+            className="-mt-14 sm:-mt-16 rounded-2xl shadow-lg shadow-black/5"
           >
-            <div className="w-28 h-28 overflow-hidden rounded-md bg-muted relative">
+            <div className="w-28 h-28 overflow-hidden rounded-2xl bg-muted relative">
               <HeroImage
                 src={data.profileImage}
                 videoSrc={data.profileVideo}

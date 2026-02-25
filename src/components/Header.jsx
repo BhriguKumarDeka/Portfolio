@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { PaintBoardIcon, ArrowLeft01Icon, Search01Icon } from 'hugeicons-react';
-import "@theme-toggles/react/css/Expand.css";
-import { Around, Expand } from "@theme-toggles/react";
+import { PaintBoardIcon, ArrowLeft01Icon, Search01Icon, Sun02Icon, Moon02Icon } from 'hugeicons-react';
 import DesignSystem from './DesignSystem';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from './ui/Button';
 import { Typography } from './ui/Typography';
 
-export default function Header({ isDark, toggleTheme, name }) {
+import { portfolioData } from '../data/portfolioData';
+
+export default function Header({ isDark, toggleTheme }) {
   const [showDesignSystem, setShowDesignSystem] = useState(false);
   const [showProgressHeader, setShowProgressHeader] = useState(false);
   const location = useLocation();
@@ -54,14 +54,21 @@ export default function Header({ isDark, toggleTheme, name }) {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}
-                  className="flex flex-col"
+                  className="flex items-center gap-2"
                 >
-                  <Typography variant="h4" className="text-sm font-bold leading-none tracking-tight">
-                    {context.title}
-                  </Typography>
-                  <Typography variant="small" className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest">
-                    {context.subtitle}
-                  </Typography>
+                  <img
+                    src={portfolioData.hero.profileImage}
+                    alt="Profile"
+                    className="w-8 h-8 rounded-md object-cover"
+                  />
+                  <div className="flex flex-col">
+                    <Typography variant="h4" className="text-sm font-bold leading-none tracking-tight">
+                      {context.title}
+                    </Typography>
+                    <Typography variant="small" className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest">
+                      {context.subtitle}
+                    </Typography>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -98,13 +105,30 @@ export default function Header({ isDark, toggleTheme, name }) {
             >
               <PaintBoardIcon size={18} />
             </Button>
-            <Expand
-              toggled={isDark}
-              toggle={toggleTheme}
-              duration={400}
-              className="rounded-full w-9 h-9 hover:bg-muted inline-flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors text-[1.2rem]"
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="rounded-full w-9 h-9 hover:bg-muted"
               aria-label="Toggle Theme"
-            />
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={isDark ? "dark" : "light"}
+                  initial={{ opacity: 0, scale: 0.5, rotate: -45 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0.5, rotate: 45 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex items-center justify-center"
+                >
+                  {isDark ? (
+                    <Sun02Icon size={18} className="text-muted-foreground hover:text-foreground transition-colors" />
+                  ) : (
+                    <Moon02Icon size={18} className="text-muted-foreground hover:text-foreground transition-colors" />
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </Button>
           </div>
         </div>
       </div>

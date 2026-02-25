@@ -182,6 +182,10 @@
 }
 
 @layer base {
+  .disable-transitions * {
+    transition: none !important;
+  }
+
   * {
     @apply border-border;
   }

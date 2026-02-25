@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import { PaintBoardIcon } from 'hugeicons-react';
-import "@theme-toggles/react/css/Expand.css";
-import { Around, Expand } from "@theme-toggles/react";
+import { PaintBoardIcon, Sun02Icon, Moon02Icon } from 'hugeicons-react';
 import DesignSystem from './DesignSystem';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from './ui/Button';
@@ -63,13 +61,30 @@ export default function FloatingNav({ data }) {
 
               <div className="w-px h-6 bg-border mx-1" />
 
-              <Expand
-                toggled={isDark}
-                toggle={toggleTheme}
-                duration={750}
-                className="rounded-full w-10 h-10 hover:bg-muted inline-flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors text-[1.4rem]"
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="rounded-full w-10 h-10 hover:bg-muted"
                 aria-label="Toggle Theme"
-              />
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={isDark ? "dark" : "light"}
+                    initial={{ opacity: 0, scale: 0.5, rotate: -45 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    exit={{ opacity: 0, scale: 0.5, rotate: 45 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex items-center justify-center"
+                  >
+                    {isDark ? (
+                      <Sun02Icon size={20} className="text-muted-foreground hover:text-foreground transition-colors" />
+                    ) : (
+                      <Moon02Icon size={20} className="text-muted-foreground hover:text-foreground transition-colors" />
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              </Button>
 
               <Button
                 variant="ghost"
@@ -94,13 +109,28 @@ export default function FloatingNav({ data }) {
             exit={{ opacity: 0 }}
             className="absolute top-6 right-6 z-50 flex gap-2"
           >
-            <Around
-              toggled={isDark}
-              toggle={toggleTheme}
-              duration={750}
-              className="rounded-full w-10 h-10 bg-background/50 backdrop-blur border border-border inline-flex items-center justify-center text-secondary-foreground hover:bg-secondary/70 transition-colors text-[1.2rem]"
+            <button
+              onClick={toggleTheme}
+              className="rounded-full w-10 h-10 bg-background/50 backdrop-blur border border-border inline-flex items-center justify-center hover:bg-secondary/70 transition-colors"
               aria-label="Toggle Theme"
-            />
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={isDark ? "dark" : "light"}
+                  initial={{ opacity: 0, scale: 0.5, rotate: -45 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0.5, rotate: 45 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex items-center justify-center"
+                >
+                  {isDark ? (
+                    <Sun02Icon size={20} className="text-secondary-foreground transition-colors" />
+                  ) : (
+                    <Moon02Icon size={20} className="text-secondary-foreground transition-colors" />
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

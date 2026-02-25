@@ -21,6 +21,9 @@ export default function RootLayout({ children }) {
 
 
   const applyTheme = (theme) => {
+    // Temporarily disable all transitions to prevent color jumping on buttons/search bar
+    document.documentElement.classList.add('disable-transitions');
+
     setIsDark(theme);
     if (theme) {
       document.documentElement.classList.add('dark');
@@ -29,6 +32,13 @@ export default function RootLayout({ children }) {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
     }
+
+    // Re-enable transitions after the DOM has painted
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        document.documentElement.classList.remove('disable-transitions');
+      });
+    });
   };
 
   const toggleTheme = () => {
@@ -42,8 +52,16 @@ export default function RootLayout({ children }) {
         toggleTheme();
       }
     };
+
+    const handleToggleEvent = () => toggleTheme();
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('toggle-theme', handleToggleEvent);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('toggle-theme', handleToggleEvent);
+    };
   }, [isDark]);
 
   return (

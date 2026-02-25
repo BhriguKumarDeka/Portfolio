@@ -13,7 +13,10 @@ import {
   SlideIcon,
   Globe02Icon,
   FigmaIcon,
-  File01Icon
+  File01Icon,
+  Sun02Icon,
+  Moon02Icon,
+  Mail01FreeIcons
 } from '@hugeicons/core-free-icons';
 
 /**
@@ -31,6 +34,7 @@ const CommandPalette = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef(null);
   const navigate = useNavigate();
+  const [isDark, setIsDark] = useState(false);
 
   // Mock data structure - aligns with the app's structure
   const commandSections = [
@@ -40,6 +44,17 @@ const CommandPalette = () => {
         { id: 'nav-home', label: 'Home', icon: Home01Icon, shortcut: 'H', action: () => navigate('/') },
         { id: 'nav-projects', label: 'Projects', icon: BrowserIcon, shortcut: 'P', action: () => navigate('/projects') },
         { id: 'nav-playground', label: 'Playground', icon: SlideIcon, shortcut: 'G', action: () => navigate('/playground') },
+      ]
+    },
+    {
+      group: "Preferences",
+      items: [
+        {
+          id: 'pref-theme', label: isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode', icon: isDark ? Sun02Icon : Moon02Icon, shortcut: 'T', action: () => {
+            window.dispatchEvent(new Event('toggle-theme'));
+            setTimeout(() => setIsDark(document.documentElement.classList.contains('dark')), 10);
+          }
+        },
       ]
     },
     {
@@ -70,6 +85,7 @@ const CommandPalette = () => {
         { id: 's1', label: 'GitHub', icon: GithubIcon, action: () => window.open('https://github.com/BhriguKumarDeka', '_blank') },
         { id: 's2', label: 'LinkedIn', icon: Linkedin01Icon, action: () => window.open('https://www.linkedin.com/in/bhrigukumardeka/', '_blank') },
         { id: 's3', label: 'Twitter', icon: NewTwitterIcon, action: () => window.open('https://x.com/Dexterwithspecs', '_blank') },
+        { id: 's4', label: 'Mail', icon: Mail01FreeIcons, action: () => window.open('mailto:vrigukumar710', '_blank') },
       ]
     }
   ];
@@ -89,14 +105,19 @@ const CommandPalette = () => {
     return flat;
   }, [search]);
 
-  // Actual selectable items only (for keyboard indexing)
   const selectableItems = useMemo(() =>
     filteredItems.filter(i => i.type === 'item'),
     [filteredItems]);
 
   // Handle Global Shortcuts
+  const lastInteraction = useRef('keyboard');
+
   useEffect(() => {
     const handleKeyDown = (e) => {
+      if (['ArrowDown', 'ArrowUp', 'Enter'].includes(e.key)) {
+        lastInteraction.current = 'keyboard';
+      }
+
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
         setIsOpen(prev => !prev);
@@ -133,12 +154,22 @@ const CommandPalette = () => {
     };
   }, [isOpen, selectableItems, selectedIndex]);
 
+  const listRef = useRef(null);
+  const activeItemRef = useRef(null);
+
+  useEffect(() => {
+    if (activeItemRef.current) {
+      activeItemRef.current.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+  }, [selectedIndex]);
+
   // Auto-focus input when opened
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 10);
       setSelectedIndex(0);
       setSearch('');
+      setIsDark(document.documentElement.classList.contains('dark'));
     }
   }, [isOpen]);
 
@@ -190,7 +221,11 @@ const CommandPalette = () => {
             </div>
 
             {/* Results List */}
-            <div className="max-h-96 overflow-y-auto py-2 command-scrollbar">
+            <div
+              ref={listRef}
+              className="max-h-96 overflow-y-auto py-2 command-scrollbar"
+              onMouseMove={() => lastInteraction.current = 'mouse'}
+            >
               {filteredItems.length === 0 ? (
                 <div className="px-6 py-10 text-center">
                   <p className="text-muted-foreground">No results found for "{search}"</p>
@@ -211,8 +246,13 @@ const CommandPalette = () => {
                   return (
                     <div
                       key={item.id}
+                      ref={isActive ? activeItemRef : null}
                       onClick={() => handleAction(item)}
-                      onMouseEnter={() => setSelectedIndex(currentSelectableIndex)}
+                      onMouseEnter={() => {
+                        if (lastInteraction.current === 'mouse') {
+                          setSelectedIndex(currentSelectableIndex);
+                        }
+                      }}
                       className="group mx-2 px-2 py-2 rounded-lg flex items-center justify-between cursor-pointer relative"
                     >
                       {/* Active highlight background */}
