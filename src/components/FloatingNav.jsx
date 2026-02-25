@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { PaintBoardIcon, Sun01Icon, Moon01Icon } from 'hugeicons-react';
+import { PaintBoardIcon } from 'hugeicons-react';
+import "@theme-toggles/react/css/Expand.css";
+import { Around, Expand } from "@theme-toggles/react";
 import DesignSystem from './DesignSystem';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from './ui/Button';
@@ -61,15 +63,13 @@ export default function FloatingNav({ data }) {
 
               <div className="w-px h-6 bg-border mx-1" />
 
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleTheme}
-                className="rounded-full w-10 h-10 hover:bg-muted"
+              <Expand
+                toggled={isDark}
+                toggle={toggleTheme}
+                duration={750}
+                className="rounded-full w-10 h-10 hover:bg-muted inline-flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors text-[1.4rem]"
                 aria-label="Toggle Theme"
-              >
-                {isDark ? <Sun01Icon size={20} /> : <Moon01Icon size={20} />}
-              </Button>
+              />
 
               <Button
                 variant="ghost"
@@ -94,14 +94,13 @@ export default function FloatingNav({ data }) {
             exit={{ opacity: 0 }}
             className="absolute top-6 right-6 z-50 flex gap-2"
           >
-            <Button
-              variant="secondary"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-full bg-background/50 backdrop-blur border-border"
-            >
-              {isDark ? <Sun01Icon size={18} /> : <Moon01Icon size={18} />}
-            </Button>
+            <Around
+              toggled={isDark}
+              toggle={toggleTheme}
+              duration={750}
+              className="rounded-full w-10 h-10 bg-background/50 backdrop-blur border border-border inline-flex items-center justify-center text-secondary-foreground hover:bg-secondary/70 transition-colors text-[1.2rem]"
+              aria-label="Toggle Theme"
+            />
           </motion.div>
         )}
       </AnimatePresence>

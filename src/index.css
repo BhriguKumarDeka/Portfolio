@@ -192,6 +192,6 @@
 
   body {
     overflow-x: hidden;
-    @apply bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground font-sans transition-colors duration-300;
+    @apply bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground font-sans;
   }
 }

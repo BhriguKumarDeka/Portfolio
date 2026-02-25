@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { PaintBoardIcon, Sun02Icon, Moon01Icon, ArrowLeft01Icon } from 'hugeicons-react';
+import { PaintBoardIcon, ArrowLeft01Icon, Search01Icon } from 'hugeicons-react';
+import "@theme-toggles/react/css/Expand.css";
+import { Around, Expand } from "@theme-toggles/react";
 import DesignSystem from './DesignSystem';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
@@ -66,6 +68,28 @@ export default function Header({ isDark, toggleTheme, name }) {
           </div>
 
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => window.dispatchEvent(new Event('open-command-palette'))}
+              className="hidden md:flex items-center gap-2 px-2 py-1.5 bg-secondary/50 border border-border/50 rounded-lg hover:bg-secondary transition-colors group"
+            >
+              <Search01Icon size={14} className="text-muted-foreground group-hover:text-foreground transition-colors" />
+              <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">Search...</span>
+              <div className="flex items-center gap-1 ml-2">
+                <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-background border border-border/50 rounded text-muted-foreground">⌘</kbd>
+                <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-background border border-border/50 rounded text-muted-foreground">K</kbd>
+              </div>
+            </button>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => window.dispatchEvent(new Event('open-command-palette'))}
+              className="md:hidden rounded-full w-9 h-9 hover:bg-muted"
+              aria-label="Search"
+            >
+              <Search01Icon size={18} />
+            </Button>
+
             <Button
               variant="ghost"
               size="icon"
@@ -74,25 +98,13 @@ export default function Header({ isDark, toggleTheme, name }) {
             >
               <PaintBoardIcon size={18} />
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-full w-9 h-9 hover:bg-muted"
+            <Expand
+              toggled={isDark}
+              toggle={toggleTheme}
+              duration={400}
+              className="rounded-full w-9 h-9 hover:bg-muted inline-flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors text-[1.2rem]"
               aria-label="Toggle Theme"
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={isDark ? 'sun' : 'moon'}
-                  initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
-                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                  exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {isDark ? <Sun02Icon size={18} /> : <Moon01Icon size={18} />}
-                </motion.div>
-              </AnimatePresence>
-            </Button>
+            />
           </div>
         </div>
       </div>

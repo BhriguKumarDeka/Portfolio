@@ -3,7 +3,7 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import { AnimatePresence } from 'motion/react';
 import RootLayout from './components/Layout/RootLayout';
 import SignatureLoader from './components/SignatureLoader';
-
+import CommandPalette from './components/CommandPalette';
 const Home = lazy(() => import('./pages/Home'));
 const Playground = lazy(() => import('./pages/Playground'));
 const ProjectsPage = lazy(() => import('./pages/Projects'));
@@ -25,6 +25,7 @@ export default function App() {
       <AnimatePresence>
         {isLoading && <SignatureLoader key="loader" />}
       </AnimatePresence>
+      <CommandPalette />
 
       <RootLayout>
         <Suspense fallback={<div className="min-h-screen" />}>
