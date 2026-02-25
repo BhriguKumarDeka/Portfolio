@@ -84,9 +84,9 @@ export default function Contact() {
           </TactileButton>
 
           <TactileButton
-            onClick={() => { }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="col-span-1 h-32"
-            label="Cappucino"
+            label="Go To Top"
           >
           </TactileButton>
 
@@ -128,6 +128,7 @@ function TactileButton({ children, onClick, label }) {
     <button
       onClick={onClick}
       className="
+                cursor-pointer
                 group relative
                 overflow-hidden
                 p-4 rounded-sm
