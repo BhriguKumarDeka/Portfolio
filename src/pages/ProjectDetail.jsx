@@ -70,7 +70,7 @@ const ProjectDetail = () => {
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.5 }}
             >
-               <Typography variant="h1" className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+               <Typography variant="h3">
                   {project.title}
                </Typography>
             </motion.div>

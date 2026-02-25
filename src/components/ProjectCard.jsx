@@ -14,7 +14,7 @@ export const ProjectCard = ({ project }) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      className="group relative flex flex-col rounded-2xl bg-card p-2 transition-all duration-500"
+      className="group relative flex flex-col rounded-2xl bg-card/80 p-2 transition-all duration-500"
     >
       {/* Visual Header */}
       <div className="relative aspect-16/10 overflow-hidden rounded-2xl bg-secondary/10">

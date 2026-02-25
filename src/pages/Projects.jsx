@@ -3,7 +3,6 @@ import { motion } from 'motion/react';
 import { portfolioData } from '../data/portfolioData';
 import { ProjectCard } from '../components/ProjectCard';
 import { Typography } from '../components/ui/Typography';
-import Header from '../components/Header';
 import Contact from '../components/Contact';
 
 const SectionDivider = () => (
