@@ -66,7 +66,7 @@ export const ProjectCard = ({ project }) => {
           {/* View Details Button */}
           <button
             onClick={() => navigate(detailsLink)}
-            className="flex-1 flex h-8 items-center justify-center gap-2 rounded-xl bg-secondary text-foreground transition-all hover:bg-secondary/20 active:scale-[0.98]"
+            className="flex-1 flex h-8 items-center justify-center gap-2 rounded-xl bg-secondary text-foreground transition-all hover:bg-secondary/40 active:scale-[0.98] cursor-pointer"
           >
             <span className="text-[11px] font-mono font-semibold uppercase tracking-tighter">
               Details

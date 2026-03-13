@@ -7,7 +7,7 @@ export const portfolioData = {
     name: "Bhrigu Kumar Deka",
     title: "Dexter",
     pronunciation: "( vreé-goo )",
-    roles: ["UI UX Designer", "Frontend Developer"],
+    roles: ["UI UX Designer", "Full Stack Developer"],
     description: [
       "Bridging the gap between creativity and functionality to bring ideas to life through human-centered design and clean code."
     ],
@@ -18,9 +18,6 @@ export const portfolioData = {
       { name: "Email", icon: Mail01Icon, link: "mailto:vrigukumar710@email.com" },
       { name: "GitHub", icon: GithubIcon, link: "https://github.com/BhriguKumarDeka" },
       { name: "LinkedIn", icon: Linkedin01Icon, link: "https://www.linkedin.com/in/bhrigukumardeka/" },
-      { name: "X", icon: NewTwitterIcon, link: "https://x.com/Dexterwithspecs" },
-      { name: "Instagram", icon: InstagramIcon, link: "https://www.instagram.com/jolpaan/" },
-      { name: "YouTube", icon: YoutubeIcon, link: "https://www.youtube.com/@dexv2602" },
     ]
   },
   projects: [
@@ -164,18 +161,18 @@ export const portfolioData = {
   ],
   experience: [
     {
+      role: 'Freelance Graphic Designer',
+      company: 'Freelance',
+      period: 'Since 2021',
+      description: 'Designed Creatives for various clients including logos, brochures, and social media content. Made Spotify album cover arts and YouTube thumbnails',
+      technologies: ['Adobe Photoshop', 'Inkscape', 'Blender']
+    },
+    {
       role: 'Graphic Designer',
       company: 'Cisco Student Club',
       period: '2024 - 2025',
       description: 'Created visually engaging graphics and managed social media content to enhance club visibility and engagement among students.',
       technologies: ['Figma', 'Adobe Photoshop', 'Inkscape']
-    },
-    {
-      role: 'Freelance Graphic Designer',
-      company: 'Freelance',
-      period: '2021 - 2023',
-      description: 'Designed Creatives for various clients including logos, brochures, and social media content. Made Spotify album cover arts and YouTube thumbnails',
-      technologies: ['Adobe Photoshop', 'Inkscape', 'Blender']
     }
   ],
 
