@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from './ui/Button';
 import { Typography } from './ui/Typography';
+import { Tooltip } from './ui/Tooltip';
 
 import { portfolioData } from '../data/portfolioData';
 
@@ -23,7 +24,7 @@ export default function Header({ isDark, toggleTheme }) {
 
   const getPageContext = () => {
     const path = location.pathname;
-    if (path === '/') return { title: 'Bhrigu Kumar Deka', subtitle: 'UI/UX Designer', root: true };
+    if (path === '/') return { title: 'Bhrigu Kumar Deka', subtitle: 'Product Designer', root: true };
     if (path.startsWith('/project/')) return { title: 'View Project', subtitle: 'Case Study', root: false };
     if (path === '/projects') return { title: 'Projects', subtitle: 'Work Archive', root: false };
     if (path === '/playground') return { title: 'Playground', subtitle: 'Creative Archive', root: false };
@@ -63,7 +64,13 @@ export default function Header({ isDark, toggleTheme }) {
                   />
                   <div className="flex flex-col">
                     <Typography variant="h4" className="text-sm font-bold leading-none tracking-tight">
-                      {context.title}
+                      {context.root ? (
+                        <Tooltip content={portfolioData.hero.pronunciation} side="bottom">
+                          <span className="cursor-default">{context.title}</span>
+                        </Tooltip>
+                      ) : (
+                        context.title
+                      )}
                     </Typography>
                     <Typography variant="small" className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest">
                       {context.subtitle}

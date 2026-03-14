@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, LayoutGroup } from 'motion/react';
 import { Location01Icon, Call02Icon, ViewIcon, CheckmarkBadge01Icon } from 'hugeicons-react';
 import { Dithering } from '@paper-design/shaders-react';
 import HeroImage from "./HeroImage.jsx";
 import { Typography } from './ui/Typography';
 import { Button } from './ui/Button';
 import CVModal from './CVModal';
+import { Tooltip } from './ui/Tooltip';
 
 export default function Hero({ data }) {
   const [showCV, setShowCV] = useState(false);
@@ -59,15 +60,17 @@ export default function Hero({ data }) {
 
           {/* Content Zone */}
           <div className="flex flex-col gap-4 w-full max-w-2xl">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 mt-2">
               <Typography variant="h1" className="text-foreground tracking-tight flex items-center gap-2">
-                {data.name}
+                <Tooltip content={data.pronunciation} side="top">
+                  <span className="cursor-default">{data.name}</span>
+                </Tooltip>
                 <CheckmarkBadge01Icon size={24} className="text-white fill-blue-500 stroke-white" strokeWidth={1.2} />
               </Typography>
 
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Typography variant="h4" as="span" className="font-medium text-primary/90">
-                  {data.roles.join("  /  ")}
+                  {data.roles.join("  &  ")}
                 </Typography>
               </div>
             </div>
@@ -113,32 +116,35 @@ export default function Hero({ data }) {
 
               <div className="h-5 w-px bg-border/60 mx-2 hidden sm:block" />
 
-              <div className="flex items-center gap-2">
-                {data.socials.map((social, idx) => {
-                  const Icon = social.icon;
-                  return (
-                    <motion.a
-                      key={social.name || idx}
-                      href={social.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="
-                        group relative p-2 rounded-md 
-                        bg-foreground/5 
-                        text-muted-foreground/80 
-                        hover:bg-foreground/10 hover:text-foreground
-                        transition-colors
-                        flex items-center justify-center
-                      "
-                      title={social.name}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Icon size={16} strokeWidth={1.5} />
-                    </motion.a>
-                  );
-                })}
-              </div>
+<LayoutGroup>
+  <div className="flex items-center gap-2">
+    {data.socials.map((social, idx) => {
+      const Icon = social.icon;
+      return (
+        <Tooltip key={social.name || idx} content={social.tag} side="top">
+          <motion.a
+            href={social.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              group relative p-2 rounded-md 
+              bg-foreground/5 
+              text-muted-foreground/80 
+              hover:bg-foreground/10 hover:text-foreground
+              transition-colors
+              flex items-center justify-center
+            "
+            aria-label={social.name}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Icon size={16} strokeWidth={1.5} />
+          </motion.a>
+        </Tooltip>
+      );
+    })}
+  </div>
+</LayoutGroup>
             </div>
 
           </div>

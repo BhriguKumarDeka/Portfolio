@@ -6,8 +6,8 @@ export const portfolioData = {
   hero: {
     name: "Bhrigu Kumar Deka",
     title: "Dexter",
-    pronunciation: "( vreé-goo )",
-    roles: ["UI UX Designer", "Full Stack Developer"],
+    pronunciation: " vreé-goo ",
+    roles: ["Full Stack Developer", "Product Designer"],
     description: [
       "Bridging the gap between creativity and functionality to bring ideas to life through human-centered design and clean code."
     ],
@@ -15,9 +15,10 @@ export const portfolioData = {
     profileVideo: "/videos/profile-video.webm",
     cvLink: "/CV/BHRIGU KUMAR DEKA.pdf",
     socials: [
-      { name: "Email", icon: Mail01Icon, link: "mailto:vrigukumar710@email.com" },
-      { name: "GitHub", icon: GithubIcon, link: "https://github.com/BhriguKumarDeka" },
-      { name: "LinkedIn", icon: Linkedin01Icon, link: "https://www.linkedin.com/in/bhrigukumardeka/" },
+      { name: "Email", icon: Mail01Icon, link: "mailto:vrigukumar710@email.com", tag: "vrigukumar710" },
+      { name: "GitHub", icon: GithubIcon, link: "https://github.com/BhriguKumarDeka", tag: "BhriguKumarDeka" },
+      { name: "LinkedIn", icon: Linkedin01Icon, link: "https://www.linkedin.com/in/bhrigukumardeka/", tag: "bhrigukumardeka" },
+      { name: "Youtube", icon: YoutubeIcon, link: "https://www.youtube.com/@bhrigukd/", tag: "@bhrigukd" },
     ]
   },
   projects: [
@@ -160,12 +161,12 @@ export const portfolioData = {
     }
   ],
   experience: [
-    {
-      role: 'Freelance Graphic Designer',
+        {
+      role: 'Freelance Product Designer | UI UX Designer',
       company: 'Freelance',
-      period: 'Since 2021',
-      description: 'Designed Creatives for various clients including logos, brochures, and social media content. Made Spotify album cover arts and YouTube thumbnails',
-      technologies: ['Adobe Photoshop', 'Inkscape', 'Blender']
+      period: '2025 - Present',
+      description: 'Designing user interfaces and experiences for web and mobile applications. Creating wireframes, prototypes, and high-fidelity designs for various clients.',
+      technologies: ['Figma', 'MERN', 'Motion']
     },
     {
       role: 'Graphic Designer',
@@ -173,7 +174,14 @@ export const portfolioData = {
       period: '2024 - 2025',
       description: 'Created visually engaging graphics and managed social media content to enhance club visibility and engagement among students.',
       technologies: ['Figma', 'Adobe Photoshop', 'Inkscape']
-    }
+    },
+        {
+      role: 'Freelance Graphic Designer',
+      company: 'Freelance',
+      period: '2021 - 2023',
+      description: 'Designed Creatives for various clients including logos, brochures, and social media content. Made Spotify album cover arts and YouTube thumbnails',
+      technologies: ['Adobe Photoshop', 'Inkscape', 'Blender']
+    },
   ],
 
   //custom svg from folder public/images/icons
@@ -203,6 +211,6 @@ export const portfolioData = {
   footer: {
     year: new Date().getFullYear(),
     text: "All rights reserved",
-    love: "Built with ❤︎ by Bhrigu Kumar Deka"
+    love: "Built with ❤︎ by Bhrigu aka Dexter"
   }
 };
