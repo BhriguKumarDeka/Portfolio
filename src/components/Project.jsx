@@ -26,11 +26,22 @@ export default function Project({ data }) {
           </Typography>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.12 },
+            },
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "100px 0px" }}
+        >
           {displayedProjects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
           ))}
-        </div>
+        </motion.div>
 
         <div className="flex justify-center mt-8">
           <Link to="/projects">
