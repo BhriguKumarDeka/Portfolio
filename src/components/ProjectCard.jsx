@@ -4,25 +4,31 @@ import { useNavigate } from "react-router-dom";
 import { ArrowUpRight01Icon, ArrowRight01Icon } from "hugeicons-react";
 import { Typography } from "./ui/Typography";
 
-export const ProjectCard = ({ project }) => {
+export const ProjectCard = ({ project, index }) => {
   const navigate = useNavigate();
   const detailsLink = project.slug ? `/project/${project.slug}` : `/project/${project.id}`;
   const liveLink = project.link || "#";
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      className="group relative flex flex-col rounded-2xl bg-card/80 p-2 transition-all duration-500"
+      initial={{ opacity: 0, y: 30, scale: 0.98 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "100px 0px" }}
+      transition={{ 
+        duration: 0.8, 
+        delay: index * 0.1,
+        ease: [0.22, 1, 0.36, 1] 
+      }}
+      className="group relative flex flex-col rounded-2xl bg-card/80 p-2"
     >
       {/* Visual Header */}
       <div className="relative aspect-16/10 overflow-hidden rounded-2xl bg-secondary/10">
         <motion.img
           src={project.image}
           alt={project.title}
-          className="h-full w-full object-cover duration-200"
+          className="h-full w-full object-cover"
           whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         />
       </div>
 

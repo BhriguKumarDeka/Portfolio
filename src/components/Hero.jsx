@@ -47,9 +47,9 @@ export default function Hero({ data }) {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="-mt-14 sm:-mt-16 rounded-2xl shadow-lg shadow-black/5"
+            className="-mt-14 sm:-mt-16 rounded-2xl shadow-lg shadow-blue-500/10"
           >
-            <div className="w-28 h-28 overflow-hidden rounded-2xl bg-muted relative">
+            <div className="w-28 h-28 overflow-hidden border-2 border-white rounded-2xl bg-muted relative">
               <HeroImage
                 src={data.profileImage}
                 videoSrc={data.profileVideo}
@@ -63,8 +63,9 @@ export default function Hero({ data }) {
             <div className="flex flex-col gap-2 mt-2">
               <Typography variant="h1" className="text-foreground tracking-tight flex items-center gap-2">
                 <Tooltip content={data.pronunciation} side="top">
-                  <span className="cursor-default">{data.name}</span>
+                  <span className="cursor-default">{data.firstName}</span>
                 </Tooltip>
+                <span className="cursor-default">{data.lastName}</span>
                 <CheckmarkBadge01Icon size={24} className="text-white fill-blue-500 stroke-white" strokeWidth={1.2} />
               </Typography>
 
@@ -116,17 +117,17 @@ export default function Hero({ data }) {
 
               <div className="h-5 w-px bg-border/60 mx-2 hidden sm:block" />
 
-<LayoutGroup>
-  <div className="flex items-center gap-2">
-    {data.socials.map((social, idx) => {
-      const Icon = social.icon;
-      return (
-        <Tooltip key={social.name || idx} content={social.tag} side="top">
-          <motion.a
-            href={social.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
+              <LayoutGroup>
+                <div className="flex items-center gap-2">
+                  {data.socials.map((social, idx) => {
+                    const Icon = social.icon;
+                    return (
+                      <Tooltip key={social.name || idx} content={social.tag} side="top">
+                        <motion.a
+                          href={social.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="
               group relative p-2 rounded-md 
               bg-foreground/5 
               text-muted-foreground/80 
@@ -134,17 +135,17 @@ export default function Hero({ data }) {
               transition-colors
               flex items-center justify-center
             "
-            aria-label={social.name}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Icon size={16} strokeWidth={1.5} />
-          </motion.a>
-        </Tooltip>
-      );
-    })}
-  </div>
-</LayoutGroup>
+                          aria-label={social.name}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Icon size={16} strokeWidth={1.5} />
+                        </motion.a>
+                      </Tooltip>
+                    );
+                  })}
+                </div>
+              </LayoutGroup>
             </div>
 
           </div>
