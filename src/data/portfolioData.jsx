@@ -4,14 +4,15 @@ import {
 
 export const portfolioData = {
   hero: {
-    name: "Bhrigu Kumar Deka",
+    firstName: "Bhrigu",
+    lastName: "Kumar Deka",
     title: "Dexter",
     pronunciation: " vreé-goo ",
     roles: ["Full Stack Developer", "Product Designer"],
     description: [
       "Bridging the gap between creativity and functionality to bring ideas to life through human-centered design and clean code."
     ],
-    profileImage: "/images/profile/profile2.png",
+    profileImage: "/images/profile/bhrigu.png",
     profileVideo: "/videos/profile-video.webm",
     cvLink: "/CV/BHRIGU KUMAR DEKA.pdf",
     socials: [
@@ -207,6 +208,20 @@ export const portfolioData = {
     { name: 'PhotoShop', Icon: '/images/icons/Adobe Photoshop.svg' },
     { name: 'Blender', Icon: '/images/icons/Blender.svg' },
     { name: 'Lottie', Icon: '/images/icons/Lottie.svg' },
+  ],
+  certificates: [
+    {
+      name: 'Cloud Computing',
+      link: '/certificates/CloudComputing.pdf',
+      provider: 'NPTEL',
+      year: '2025'
+    },
+    {
+      name: 'The Complete JavaScript Course',
+      link: '/certificates/JavaScriptCourse.pdf',
+      provider: 'Udemy',
+      year: '2024'
+    }
   ],
   footer: {
     year: new Date().getFullYear(),

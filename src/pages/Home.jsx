@@ -13,6 +13,7 @@ const SectionDivider = () => (
 );
 
 import Contact from '../components/Contact';
+import Certificates from '../components/Certificates';
 import PlaygroundPreview from '../components/PlaygroundPreview';
 import ScreenDisplay from '../components/ScreenDisplay';
 
@@ -46,6 +47,12 @@ export default function Home() {
 
       <div id="skills" className="relative">
         <Skills data={portfolioData.skills} />
+      </div>
+
+      <SectionDivider />
+
+      <div id="certificates" className="relative">
+        <Certificates data={portfolioData.certificates} />
       </div>
 
       <SectionDivider />
