@@ -24,7 +24,7 @@ export default function Hero({ data }) {
 
       {/* Background Layer */}
       <div className="h-36 w-full relative overflow-hidden isolate">
-        <div className="absolute inset-0 z-0 opacity-100">
+        <div className="absolute inset-0 z-0 opacity-100" style={{ contain: 'strict', willChange: 'transform' }}>
           <Dithering
             width="800"
             height="150"

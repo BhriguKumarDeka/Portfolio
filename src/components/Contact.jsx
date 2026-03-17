@@ -44,7 +44,7 @@ export default function Contact() {
       >
 
         <div className="relative w-full rounded-lg overflow-hidden bg-primary mb-4 ring-1 ring-border shadow-inner isolate">
-          <div className="absolute inset-0">
+          <div className="absolute inset-0" style={{ contain: 'strict', willChange: 'transform' }}>
             <Dithering
               width="100%"
               height="100%"
