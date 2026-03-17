@@ -30,10 +30,10 @@ export default function Contact() {
     <section className="flex justify-center p-4">
 
       <motion.div
-        initial={{ y: 50, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        initial={{ y: 30, opacity: 0, scale: 0.99 }}
+        whileInView={{ y: 0, opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: "100px 0px" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="
           relative w-full 
           bg-accent

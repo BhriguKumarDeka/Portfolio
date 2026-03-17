@@ -12,10 +12,10 @@ export default function Project({ data }) {
   return (
     <section className="px-4 py-6">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        viewport={{ once: true, margin: "100px 0px" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="flex items-baseline justify-between mb-4 pb-2">
           <Typography variant="h3">
