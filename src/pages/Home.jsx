@@ -17,6 +17,8 @@ import Certificates from '../components/Certificates';
 import PlaygroundPreview from '../components/PlaygroundPreview';
 import ScreenDisplay from '../components/ScreenDisplay';
 
+import Education from '../components/Education';
+
 export default function Home() {
   return (
     <>
@@ -41,6 +43,12 @@ export default function Home() {
 
       <div id="experience" className="relative">
         <Experience data={portfolioData.experience} />
+      </div>
+
+      <SectionDivider />
+
+      <div id="education" className="relative">
+        <Education data={portfolioData.education} />
       </div>
 
       <SectionDivider />

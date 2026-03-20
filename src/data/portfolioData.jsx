@@ -223,6 +223,14 @@ export const portfolioData = {
       year: '2024'
     }
   ],
+  education: [
+    {
+      name: 'Bachelor of Technology',
+      university: 'Lovely Professional University',
+      cgpa: '8.42',
+      year: 'since 2023'
+    }
+  ],
   footer: {
     year: new Date().getFullYear(),
     text: "All rights reserved",
