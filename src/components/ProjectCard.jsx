@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from "motion/react";
+import { motion } from 'motion/react';
 import { useNavigate } from "react-router-dom";
 import { ArrowUpRight01Icon, ArrowRight01Icon } from "hugeicons-react";
 import { Typography } from "./ui/Typography";
@@ -20,12 +20,11 @@ export const ProjectCard = ({ project, index }) => {
     >
       {/* Visual Header */}
       <div className="relative aspect-16/10 overflow-hidden rounded-2xl bg-secondary/10">
-        <motion.img
+        <img
           src={project.image}
           alt={project.title}
-          className="h-full w-full object-cover"
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          loading="lazy"
+          className="h-full w-full object-cover transition-transform duration-400 ease-out will-change-transform hover:scale-105"
         />
       </div>
 

@@ -22,21 +22,27 @@ export default function Certificates({ data }) {
           </Typography>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1 } },
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "50px 0px" }}
+        >
           {data.map((cert, index) => (
             <motion.a
               key={index}
               href={cert.link}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "50px 0px" }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.1,
-                ease: [0.22, 1, 0.36, 1],
+              variants={{
+                hidden: { opacity: 0, y: 15 },
+                visible: { opacity: 1, y: 0 },
               }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="
                 group flex items-center justify-between
                 px-4 py-3.5
@@ -63,7 +69,7 @@ export default function Certificates({ data }) {
               />
             </motion.a>
           ))}
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );
