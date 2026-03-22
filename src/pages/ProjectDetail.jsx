@@ -150,9 +150,8 @@ const ProjectDetail = () => {
             {/* Overview */}
             <motion.div
                initial={{ opacity: 0, y: 10 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ duration: 0.5 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.5, delay: 0.3 }}
             >
                <SectionLabel icon={DashboardSquare01Icon} label="Overview" />
                <p className="text-muted-foreground leading-relaxed text-sm">
@@ -164,9 +163,8 @@ const ProjectDetail = () => {
             {project.techStack?.length > 0 && (
                <motion.div
                   initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.05 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
                >
                   <SectionLabel icon={CpuIcon} label="Tech Stack" />
                   <div className="flex flex-wrap gap-2">
@@ -186,9 +184,8 @@ const ProjectDetail = () => {
             {project.features && (
                <motion.div
                   initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
                >
                   <SectionLabel icon={CheckListIcon} label="Features" />
                   <div className="flex flex-col gap-3">
