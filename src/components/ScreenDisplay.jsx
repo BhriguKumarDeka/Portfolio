@@ -47,7 +47,7 @@ const ScreenDisplay = () => {
               <img
                 src={imageSrc}
                 alt="UI Design"
-                loading="eager"
+                loading="lazy"
                 className="w-full h-auto object-cover aspect-auto"
               />
             </div>

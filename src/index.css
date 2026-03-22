@@ -102,6 +102,7 @@
   flex-direction: column;
   animation: scroll-vertical var(--animation-duration) linear infinite;
   will-change: transform;
+  contain: content;
   
   &:hover {
     animation-play-state: paused;
@@ -110,11 +111,12 @@
   & img {
     min-height: 500px;
     background: rgba(255, 255, 255, 0.02);
+    content-visibility: auto;
   }
 
   @media (max-width: 768px) {
     & img {
-      min-height: 300px;
+      min-height: 200px;
     }
   }
 }
