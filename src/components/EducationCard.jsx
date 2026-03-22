@@ -8,7 +8,7 @@ export const EducationCard = ({ education, index }) => {
       className="group relative"
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: "50px 0px" }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
     >
       {/* Timeline bar */}
