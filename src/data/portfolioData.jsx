@@ -16,7 +16,7 @@ export const portfolioData = {
     profileVideo: "/videos/profile-video.webm",
     cvLink: "/CV/BHRIGU KUMAR DEKA.pdf",
     socials: [
-      { name: "Email", icon: Mail01Icon, link: "mailto:vrigukumar710@email.com", tag: "vrigukumar710" },
+      { name: "Email", icon: Mail01Icon, link: "mailto:vrigukumar710@gmail.com", tag: "vrigukumar710" },
       { name: "GitHub", icon: GithubIcon, link: "https://github.com/BhriguKumarDeka", tag: "BhriguKumarDeka" },
       { name: "LinkedIn", icon: Linkedin01Icon, link: "https://www.linkedin.com/in/bhrigukumardeka/", tag: "bhrigukumardeka" },
       { name: "Youtube", icon: YoutubeIcon, link: "https://www.youtube.com/@bhrigukd/", tag: "@bhrigukd" },
